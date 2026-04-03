@@ -16,15 +16,23 @@ body {
 
 /* NAV */
 nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   text-align: center;
   padding: 20px;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
+
 nav a {
-  margin: 0 15px;
   color: #94a3b8;
+  margin: 0 15px;
   text-decoration: none;
   transition: 0.3s;
 }
+
 nav a:hover {
   color: white;
 }
@@ -33,102 +41,101 @@ nav a:hover {
 .hero {
   display: flex;
   justify-content: center;
-  padding: 80px 20px;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
 }
 
 .card {
-  text-align: center;
   background: rgba(255,255,255,0.05);
-  padding: 45px;
-  border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-  max-width: 520px;
+  padding: 50px;
+  border-radius: 25px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  max-width: 500px;
   animation: fadeUp 1s ease;
 }
 
 .avatar {
-  width: 95px;
-  height: 95px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  background: linear-gradient(135deg,#6366f1,#8b5cf6);
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 38px;
+  font-size: 35px;
   margin: 0 auto 20px;
-  animation: float 3s infinite ease-in-out;
+}
+
+h1 {
+  margin: 10px 0;
 }
 
 .bio {
   color: #94a3b8;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .btn {
   display: inline-block;
-  padding: 13px 24px;
-  background: linear-gradient(135deg,#6366f1,#8b5cf6);
-  color: white;
+  padding: 14px 26px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   border-radius: 12px;
+  color: white;
   text-decoration: none;
   font-weight: bold;
   transition: 0.3s;
 }
+
 .btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 30px rgba(139,92,246,0.5);
+  transform: scale(1.05);
 }
 
 /* SECTION */
 .section {
+  padding: 100px 20px;
   text-align: center;
-  padding: 70px 20px;
   max-width: 800px;
   margin: auto;
   animation: fadeUp 1s ease;
 }
 
+.section h2 {
+  margin-bottom: 20px;
+}
+
+/* SKILLS */
 .skills span {
-  display: inline-block;
-  margin: 10px;
-  padding: 8px 16px;
   background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-  transition: 0.3s;
-}
-.skills span:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-/* APPS */
-.apps {
-  max-width: 900px;
-  margin: auto;
-  padding: 40px 20px;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 10px;
+  display: inline-block;
 }
 
+/* APP CARD */
 .app {
   background: rgba(255,255,255,0.05);
   padding: 30px;
   border-radius: 20px;
-  margin-bottom: 30px;
-  transition: 0.4s;
-  text-align: center;
+  margin-top: 30px;
+  transition: 0.3s;
 }
 
 .app:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  transform: translateY(-5px);
 }
 
-.badge {
+/* APP STORE BUTTON IMAGE */
+.store-btn {
   margin-top: 15px;
   width: 160px;
   transition: 0.3s;
 }
-.badge:hover {
-  transform: scale(1.1);
+
+.store-btn:hover {
+  transform: scale(1.05);
 }
 
 /* CONTACT */
@@ -136,40 +143,29 @@ nav a:hover {
   color: #8b5cf6;
   text-decoration: none;
 }
-.contact a:hover {
-  text-decoration: underline;
-}
 
-/* FOOTER */
 .footer {
+  margin: 50px 0;
   text-align: center;
-  padding: 30px;
   color: #64748b;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
 </style>
-
 </head>
+
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#">Home</a>
   <a href="#about">About</a>
@@ -177,23 +173,21 @@ nav a:hover {
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
+<section class="hero">
   <div class="card">
     <div class="avatar">👨‍💻</div>
-
     <h1>Oussama El Mejdoubi</h1>
-
     <p class="bio">
-      Indie iOS developer building clean, high-performance apps focused on simplicity and user experience.
+      Indie iOS developer building clean, high-performance apps with a focus on simplicity and user experience.
     </p>
 
-    <a class="btn" href="#apps">🚀 Explore My Apps</a>
+    <a class="btn" href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" target="_blank">
+      🚀 Explore My Apps
+    </a>
   </div>
-</div>
+</section>
 
-<!-- ABOUT -->
-<div id="about" class="section">
+<section id="about" class="section">
   <h2>About Me</h2>
   <p>
     I build high-quality iOS apps focused on performance, clean design, and real user value.
@@ -205,45 +199,38 @@ nav a:hover {
     <span>📱 SwiftUI</span>
     <span>🎨 UI/UX</span>
   </div>
-</div>
+</section>
 
-<!-- APPS -->
-<div id="apps" class="apps">
+<section id="apps" class="section">
   <h2>My Apps</h2>
 
-  <!-- APP 1 -->
   <div class="app">
-    <p><strong>📱 Muslim Wallpapers & Calligraphy</strong></p>
+    <h3>📱 Muslim Wallpapers & Calligraphy</h3>
     <p>Elegant Islamic wallpapers with a clean and spiritual aesthetic.</p>
 
     <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
-      <img class="badge" src="appstore.svg">
+      <img class="store-btn" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
     </a>
   </div>
 
-  <!-- APP 2 -->
   <div class="app">
-    <p><strong>💼 Freelance Income & Invoices</strong></p>
+    <h3>💼 Freelance Income & Invoices</h3>
     <p>Simple tool to manage freelance income, invoices, and finances.</p>
 
     <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
-      <img class="badge" src="appstore.svg">
+      <img class="store-btn" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
     </a>
   </div>
 
-</div>
+</section>
 
-<!-- CONTACT -->
-<div id="contact" class="section contact">
+<section id="contact" class="section contact">
   <h2>Contact</h2>
-  <p>
-    📩 <a href="mailto:OussamaElmejdoubi@protonmail.com">
+  <p>📩 <a href="mailto:OussamaElmejdoubi@protonmail.com">
     OussamaElmejdoubi@protonmail.com
-    </a>
-  </p>
-</div>
+  </a></p>
+</section>
 
-<!-- FOOTER -->
 <div class="footer">
   © 2026 Oussama El Mejdoubi
 </div>

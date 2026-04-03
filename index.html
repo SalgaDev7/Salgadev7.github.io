@@ -13,6 +13,7 @@
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(135deg, #0f172a, #020617);
       color: white;
+      overflow-x: hidden;
     }
 
     /* NAVBAR */
@@ -22,19 +23,20 @@
       gap: 30px;
       padding: 20px;
       font-size: 14px;
+      animation: fadeDown 0.8s ease;
     }
 
     .navbar a {
       color: #94a3b8;
       text-decoration: none;
-      transition: 0.2s;
+      transition: 0.3s;
     }
 
     .navbar a:hover {
       color: white;
     }
 
-    /* MAIN CARD */
+    /* HERO */
     .container {
       display: flex;
       justify-content: center;
@@ -50,6 +52,12 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
       max-width: 500px;
+      animation: fadeUp 1s ease;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.02);
     }
 
     .avatar {
@@ -62,6 +70,7 @@
       justify-content: center;
       font-size: 30px;
       margin: 0 auto 20px;
+      animation: pop 0.6s ease;
     }
 
     h1 {
@@ -83,11 +92,12 @@
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
-      transition: 0.2s;
+      transition: 0.3s;
     }
 
     .btn:hover {
       background: #16a34a;
+      transform: scale(1.05);
     }
 
     /* SECTIONS */
@@ -96,6 +106,14 @@
       margin: 60px auto;
       text-align: center;
       padding: 0 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.6s;
+    }
+
+    .about.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .about h2 {
@@ -114,6 +132,41 @@
       font-size: 12px;
       color: #64748b;
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
   </style>
 </head>
 
@@ -167,7 +220,7 @@
   <div id="contact" class="about">
     <h2>Contact</h2>
     <p>
-      📧 <a href="mailto:your@email.com" style="color:#22c55e;">your@email.com</a>
+      📧 <a href="OussamaElmejdoubi@Protonmail.com" style="color:#22c55e;">your@email.com</a>
     </p>
   </div>
 
@@ -175,6 +228,22 @@
   <div class="footer">
     © 2026 Oussama El Mejdoubi
   </div>
+
+  <!-- SCROLL ANIMATION SCRIPT -->
+  <script>
+    const sections = document.querySelectorAll('.about');
+
+    window.addEventListener('scroll', () => {
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        const trigger = window.innerHeight - 100;
+
+        if (top < trigger) {
+          section.classList.add('show');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

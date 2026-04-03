@@ -8,6 +8,13 @@
 <meta name="description" content="Indie iOS developer building clean, fast, and user-focused apps using Swift and SwiftUI.">
 
 <style>
+
+/* FIX WHITE SCROLL */
+html, body {
+  height: 100%;
+  background: #020617;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -15,9 +22,10 @@ body {
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* CLEAN BACKGROUND */
+/* CLEAN GLOW */
 body::after {
   content: "";
   position: fixed;
@@ -42,7 +50,7 @@ body::after {
   }
 }
 
-/* NAV FIXED */
+/* NAV */
 nav {
   position: sticky;
   top: 0;
@@ -179,6 +187,7 @@ p {
 a.email {
   color: #a78bfa;
 }
+
 </style>
 </head>
 

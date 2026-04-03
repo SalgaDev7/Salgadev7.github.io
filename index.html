@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* CLEAN GLOW */
+/* CLEAN BACKGROUND */
 body::after {
   content: "";
   position: fixed;
@@ -42,14 +42,16 @@ body::after {
   }
 }
 
-/* NAV */
+/* NAV FIXED */
 nav {
   position: sticky;
   top: 0;
-  background: rgba(2,6,23,0.6);
+  z-index: 1000;
+  background: rgba(2,6,23,0.85);
   backdrop-filter: blur(12px);
   text-align: center;
   padding: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 nav a {
@@ -66,7 +68,7 @@ nav a:hover {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 120px 20px;
+  padding: 140px 20px 100px;
 }
 
 .avatar {
@@ -144,7 +146,7 @@ p {
   background: rgba(255,255,255,0.12);
 }
 
-/* APP STORE BUTTON (SVG STYLE) */
+/* APPSTORE */
 .appstore-btn {
   width: 160px;
   margin-top: 20px;

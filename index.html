@@ -57,18 +57,8 @@ nav a:hover {
   margin: 0 auto 20px;
 }
 
-h1 {
-  margin: 10px 0;
-}
-
 .bio {
   color: #94a3b8;
-  margin-bottom: 20px;
-}
-
-.stats {
-  color: #64748b;
-  font-size: 14px;
   margin-bottom: 20px;
 }
 
@@ -116,16 +106,20 @@ h1 {
   border-radius: 20px;
   margin-bottom: 30px;
   transition: 0.3s;
+  text-align: center;
 }
 
 .app:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
-.app img {
-  width: 100%;
-  border-radius: 15px;
-  margin-bottom: 15px;
+.app img.badge {
+  margin-top: 15px;
+  width: 160px;
+  transition: 0.3s;
+}
+.app img.badge:hover {
+  transform: scale(1.08);
 }
 
 /* CONTACT */
@@ -169,14 +163,11 @@ h1 {
 <div class="hero">
   <div class="card">
     <div class="avatar">👨‍💻</div>
+
     <h1>Oussama El Mejdoubi</h1>
 
     <p class="bio">
-      Indie iOS developer building clean, high-performance apps with a focus on simplicity and user experience.
-    </p>
-
-    <p class="stats">
-      🚀 2 Apps Published • 📱 iOS Developer • ⚡ Swift / SwiftUI
+      Indie iOS developer building clean, high-performance apps focused on simplicity and user experience.
     </p>
 
     <a class="btn" href="#apps">🚀 Explore My Apps</a>
@@ -198,41 +189,27 @@ h1 {
   </div>
 </div>
 
-<!-- WHY -->
-<div class="section">
-  <h2>Why My Apps?</h2>
-  <p>
-    I focus on simplicity, performance, and real user needs — building apps that people actually enjoy using.
-  </p>
-</div>
-
 <!-- APPS -->
 <div id="apps" class="apps">
-  <h2 style="text-align:center;">My Apps</h2>
+  <h2>My Apps</h2>
 
   <!-- APP 1 -->
   <div class="app">
-    <img src="app1.png">
-    <p>
-      📱 <strong>Muslim Wallpapers & Calligraphy</strong><br>
-      Elegant Islamic wallpapers with a clean and spiritual aesthetic.
-    </p>
+    <p><strong>📱 Muslim Wallpapers & Calligraphy</strong></p>
+    <p>Elegant Islamic wallpapers with a clean and spiritual aesthetic.</p>
 
     <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150">
+      <img class="badge" src="appstore.svg">
     </a>
   </div>
 
   <!-- APP 2 -->
   <div class="app">
-    <img src="app2.png">
-    <p>
-      💼 <strong>Freelance Income & Invoices</strong><br>
-      Simple tool to manage freelance income, invoices, and finances.
-    </p>
+    <p><strong>💼 Freelance Income & Invoices</strong></p>
+    <p>Simple tool to manage freelance income, invoices, and finances.</p>
 
     <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
-      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150">
+      <img class="badge" src="appstore.svg">
     </a>
   </div>
 
@@ -241,9 +218,11 @@ h1 {
 <!-- CONTACT -->
 <div id="contact" class="section contact">
   <h2>Contact</h2>
-  <p>📩 <a href="mailto:OussamaElmejdoubi@protonmail.com">
+  <p>
+    📩 <a href="mailto:OussamaElmejdoubi@protonmail.com">
     OussamaElmejdoubi@protonmail.com
-  </a></p>
+    </a>
+  </p>
 </div>
 
 <!-- FOOTER -->

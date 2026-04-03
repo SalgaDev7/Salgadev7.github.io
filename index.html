@@ -9,36 +9,37 @@
 
 <style>
 
-/* BASE */
+/* RESET */
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   background: #020617;
 }
 
+/* GLOBAL BACKGROUND (FIXED CLEAN) */
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: white;
   scroll-behavior: smooth;
   overflow-x: hidden;
 
-  /* CLEAN BACKGROUND (no seams) */
   background:
-    radial-gradient(circle at 25% 30%, rgba(99,102,241,0.15), transparent 40%),
-    radial-gradient(circle at 75% 70%, rgba(139,92,246,0.12), transparent 40%),
-    linear-gradient(135deg, #020617, #0f172a);
+    radial-gradient(circle at 30% 30%, rgba(99,102,241,0.12), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(139,92,246,0.10), transparent 60%),
+    #020617;
+
+  background-attachment: fixed;
 }
 
 /* NAV */
 nav {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
   background: rgba(2,6,23,0.85);
   backdrop-filter: blur(12px);
-  text-align: center;
   padding: 15px;
+  text-align: center;
 }
 
 nav a {
@@ -92,9 +93,11 @@ p {
 .section {
   text-align: center;
   padding: 100px 20px;
+  background: transparent;
+
   opacity: 0;
   transform: translateY(40px);
-  transition: 0.7s ease;
+  transition: 0.6s ease;
 }
 
 .section.show {
@@ -105,17 +108,16 @@ p {
 /* CARDS */
 .card {
   background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
   padding: 30px;
   margin: 25px auto;
   max-width: 600px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.05);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
 /* SKILLS */
@@ -147,6 +149,12 @@ p {
 .appstore-btn {
   width: 160px;
   margin-top: 20px;
+  transition: 0.3s;
+}
+
+.appstore-btn:hover {
+  transform: scale(1.08);
+  filter: brightness(1.2);
 }
 
 /* EMAIL */
@@ -176,7 +184,7 @@ a.email {
   </p>
 </section>
 
-<!-- WHAT -->
+<!-- WHAT I BUILD -->
 <section class="section">
   <h2>What I Build</h2>
   <p>🚀 High-performance iOS apps</p>
@@ -187,7 +195,10 @@ a.email {
 <!-- ABOUT -->
 <section class="section" id="about">
   <h2>About Me</h2>
-  <p>I build clean, fast, user-focused apps.</p>
+  <p>
+    I build high-quality iOS apps focused on performance,
+    clean design, and real user value.
+  </p>
 
   <div class="skills">
     <span>⚡ Swift</span>
@@ -201,8 +212,8 @@ a.email {
   <h2>My Apps</h2>
 
   <div class="card">
-    <h3>📱 Muslim Wallpapers</h3>
-    <p>Elegant Islamic wallpapers.</p>
+    <h3>📱 Muslim Wallpapers & Calligraphy</h3>
+    <p>Elegant Islamic wallpapers with a clean aesthetic.</p>
 
     <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
       <svg class="appstore-btn" viewBox="0 0 200 60">
@@ -217,6 +228,32 @@ a.email {
     </a>
   </div>
 
+  <div class="card">
+    <h3>💼 Freelance Income & Invoices</h3>
+    <p>Simple tool to manage freelance income.</p>
+
+    <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
+      <svg class="appstore-btn" viewBox="0 0 200 60">
+        <rect width="200" height="60" rx="12" fill="black"/>
+        <text x="100" y="25" fill="white" font-size="10" text-anchor="middle">
+          Download on the
+        </text>
+        <text x="100" y="42" fill="white" font-size="16" text-anchor="middle" font-weight="bold">
+          App Store
+        </text>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <h2>Let’s Build Something Great 🚀</h2>
+  <p>Open to collaborations or freelance work.</p>
+  <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn">
+    Contact Me
+  </a>
 </section>
 
 <!-- CONTACT -->
@@ -225,6 +262,7 @@ a.email {
   <p>📩 <a class="email" href="mailto:OussamaElmejdoubi@protonmail.com">
     OussamaElmejdoubi@protonmail.com
   </a></p>
+  <p style="margin-top:40px; color:#64748b;">© 2026 Oussama El Mejdoubi</p>
 </section>
 
 <script>

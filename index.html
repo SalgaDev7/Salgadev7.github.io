@@ -1,246 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Oussama El Mejdoubi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Indie iOS developer building clean and useful mobile apps.">
+<title>Oussama El Mejdoubi</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      color: white;
-      overflow-x: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #020617, #020617, #0f172a);
+  color: white;
+  scroll-behavior: smooth;
+}
 
-    .navbar {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px;
-      font-size: 14px;
-      animation: fadeDown 0.8s ease;
-    }
+/* NAV */
+nav {
+  text-align: center;
+  padding: 20px;
+}
 
-    .navbar a {
-      color: #94a3b8;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+nav a {
+  color: #94a3b8;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .navbar a:hover {
-      color: white;
-    }
+nav a:hover {
+  color: white;
+}
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 70vh;
-    }
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
 
-    .card {
-      text-align: center;
-      background: rgba(255,255,255,0.05);
-      padding: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-      max-width: 500px;
-      animation: fadeUp 1s ease;
-      transition: transform 0.3s;
-    }
+.card {
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  max-width: 500px;
+  animation: fadeIn 1s ease;
+}
 
-    .card:hover {
-      transform: translateY(-5px) scale(1.02);
-    }
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  margin: 0 auto 20px;
+}
 
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: #22c55e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      margin: 0 auto 20px;
-      animation: pop 0.6s ease;
-    }
+h1 {
+  margin: 10px 0;
+}
 
-    h1 {
-      margin: 10px 0;
-      font-size: 28px;
-    }
+.bio {
+  color: #94a3b8;
+  margin-bottom: 25px;
+}
 
-    .bio {
-      color: #94a3b8;
-      margin-bottom: 25px;
-      font-size: 15px;
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 22px;
+  background: #22c55e;
+  color: black;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 20px;
-      background: #22c55e;
-      color: black;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
+.btn:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
 
-    .btn:hover {
-      background: #16a34a;
-      transform: scale(1.05);
-    }
+/* SECTIONS */
+.section {
+  max-width: 700px;
+  margin: 80px auto;
+  text-align: center;
+  padding: 0 20px;
+}
 
-    .about {
-      max-width: 700px;
-      margin: 60px auto;
-      text-align: center;
-      padding: 0 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: 0.6s;
-    }
+.section h2 {
+  margin-bottom: 20px;
+}
 
-    .about.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.section p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
 
-    .about h2 {
-      margin-bottom: 15px;
-    }
+/* SKILLS */
+.skills {
+  margin-top: 20px;
+}
 
-    .about p {
-      color: #94a3b8;
-      line-height: 1.8;
-      font-size: 15px;
-    }
+.skill {
+  display: inline-block;
+  margin: 6px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  transition: 0.3s;
+}
 
-    .about p br {
-      display: block;
-      margin: 8px 0;
-    }
+.skill:hover {
+  background: #22c55e;
+  color: black;
+}
 
-    .footer {
-      text-align: center;
-      margin: 40px 0;
-      font-size: 12px;
-      color: #64748b;
-    }
+/* APP CARD */
+.app {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  transition: 0.3s;
+}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.app:hover {
+  transform: translateY(-5px);
+}
 
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+/* CONTACT */
+a.email {
+  color: #22c55e;
+  text-decoration: none;
+}
 
-    @keyframes pop {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin: 60px 0 20px;
+  color: #64748b;
+  font-size: 12px;
+}
 
-  </style>
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <a href="#">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
+<!-- NAV -->
+<nav>
+  <a href="#">Home</a>
+  <a href="#about">About</a>
+  <a href="#apps">Apps</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-  <!-- HERO -->
-  <div class="container">
-    <div class="card">
-      <div class="avatar">👨‍💻</div>
+<!-- HERO -->
+<div class="hero">
+  <div class="card">
+    <div class="avatar">👨‍💻</div>
 
-      <h1>Oussama El Mejdoubi</h1>
+    <h1>Oussama El Mejdoubi</h1>
 
-      <p class="bio">
-        Indie iOS developer building clean, user-focused apps with a passion for performance and simplicity.
-      </p>
-
-      <a class="btn" 
-         href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" 
-         target="_blank">
-        🚀 Get My Apps
-      </a>
-    </div>
-  </div>
-
-  <!-- ABOUT -->
-  <div id="about" class="about">
-    <h2>About Me</h2>
-    <p>
-      I’m an independent iOS developer specialized in building clean, high-performance mobile applications using Swift and SwiftUI.
-      I focus on delivering intuitive user experiences and crafting visually appealing interfaces with strong attention to detail.
-      My goal is to create apps that are not only functional, but also enjoyable and meaningful for users.
+    <p class="bio">
+      Indie iOS developer building clean, high-performance apps with a focus on simplicity and user experience.
     </p>
-  </div>
 
-  <!-- WHAT I DO -->
-  <div class="about">
-    <h2>What I Do</h2>
+    <a class="btn" href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" target="_blank">
+      🚀 Explore My Apps
+    </a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <h2>About Me</h2>
+  <p>
+    I build high-quality iOS apps focused on performance, clean design, and real user value.
+    I enjoy turning ideas into polished, user-friendly experiences using Swift and SwiftUI.
+  </p>
+
+  <div class="skills">
+    <span class="skill">⚡ Swift</span>
+    <span class="skill">📱 SwiftUI</span>
+    <span class="skill">🎨 UI/UX</span>
+  </div>
+</div>
+
+<!-- APPS -->
+<div class="section" id="apps">
+  <h2>My Apps</h2>
+
+  <div class="app">
     <p>
-      📱 iOS App Development <br><br>
-      🎨 UI/UX Design <br><br>
-      ⚡ Performance Optimization
+      📱 <strong>Muslim Wallpapers & Calligraphy</strong><br>
+      Elegant Islamic wallpapers designed with a clean and spiritual aesthetic.
     </p>
+
+    <a class="btn" href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" target="_blank">
+      View on App Store
+    </a>
   </div>
+</div>
 
-  <!-- SKILLS -->
-  <div class="about">
-    <h2>Skills</h2>
-    <p>
-      ⚡ Swift &nbsp;&nbsp; • &nbsp;&nbsp;
-      📱 SwiftUI &nbsp;&nbsp; • &nbsp;&nbsp;
-      🎨 UI/UX Design
-    </p>
-  </div>
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <h2>Contact</h2>
 
-  <!-- CONTACT -->
-  <div id="contact" class="about">
-    <h2>Contact</h2>
-    <p>
-      📧 <a href="mailto:OussamaElmejdoubi@Protonmail.com" style="color:#22c55e;">
-      OussamaElmejdoubi@Protonmail.com
-      </a>
-    </p>
-  </div>
+  <p>
+    📩 <a class="email" href="mailto:OussamaElmejdoubi@protonmail.com">
+      OussamaElmejdoubi@protonmail.com
+    </a>
+  </p>
+</div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    © 2026 Oussama El Mejdoubi
-  </div>
-
-  <!-- SCROLL ANIMATION -->
-  <script>
-    const sections = document.querySelectorAll('.about');
-
-    window.addEventListener('scroll', () => {
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        const trigger = window.innerHeight - 100;
-
-        if (top < trigger) {
-          section.classList.add('show');
-        }
-      });
-    });
-  </script>
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Oussama El Mejdoubi
+</div>
 
 </body>
 </html>

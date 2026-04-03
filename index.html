@@ -16,7 +16,6 @@
       overflow-x: hidden;
     }
 
-    /* NAVBAR */
     .navbar {
       display: flex;
       justify-content: center;
@@ -36,7 +35,6 @@
       color: white;
     }
 
-    /* HERO */
     .container {
       display: flex;
       justify-content: center;
@@ -100,7 +98,6 @@
       transform: scale(1.05);
     }
 
-    /* SECTIONS */
     .about {
       max-width: 700px;
       margin: 60px auto;
@@ -126,6 +123,11 @@
       font-size: 15px;
     }
 
+    .about p br {
+      display: block;
+      margin: 8px 0;
+    }
+
     .footer {
       text-align: center;
       margin: 40px 0;
@@ -133,38 +135,19 @@
       color: #64748b;
     }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes pop {
-      from {
-        transform: scale(0.7);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
   </style>
@@ -193,7 +176,7 @@
       <a class="btn" 
          href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" 
          target="_blank">
-         View on App Store
+        🚀 Get My Apps
       </a>
     </div>
   </div>
@@ -208,11 +191,23 @@
     </p>
   </div>
 
+  <!-- WHAT I DO -->
+  <div class="about">
+    <h2>What I Do</h2>
+    <p>
+      📱 iOS App Development <br><br>
+      🎨 UI/UX Design <br><br>
+      ⚡ Performance Optimization
+    </p>
+  </div>
+
   <!-- SKILLS -->
   <div class="about">
     <h2>Skills</h2>
     <p>
-      Swift • SwiftUI • UI/UX Design
+      ⚡ Swift &nbsp;&nbsp; • &nbsp;&nbsp;
+      📱 SwiftUI &nbsp;&nbsp; • &nbsp;&nbsp;
+      🎨 UI/UX Design
     </p>
   </div>
 
@@ -220,7 +215,9 @@
   <div id="contact" class="about">
     <h2>Contact</h2>
     <p>
-      📧 <a href="mailto:your@email.com" style="color:#22c55e;">OussamaElmejdoubi@Protonmail.com</a>
+      📧 <a href="mailto:OussamaElmejdoubi@Protonmail.com" style="color:#22c55e;">
+      OussamaElmejdoubi@Protonmail.com
+      </a>
     </p>
   </div>
 
@@ -229,7 +226,7 @@
     © 2026 Oussama El Mejdoubi
   </div>
 
-  <!-- SCROLL ANIMATION SCRIPT -->
+  <!-- SCROLL ANIMATION -->
   <script>
     const sections = document.querySelectorAll('.about');
 

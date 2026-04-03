@@ -11,6 +11,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: linear-gradient(135deg, #020617, #020617, #0f172a);
   color: white;
+  scroll-behavior: smooth;
 }
 
 /* NAV */
@@ -22,6 +23,7 @@ nav a {
   margin: 0 15px;
   color: #94a3b8;
   text-decoration: none;
+  transition: 0.3s;
 }
 nav a:hover {
   color: white;
@@ -31,30 +33,31 @@ nav a:hover {
 .hero {
   display: flex;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 .card {
   text-align: center;
   background: rgba(255,255,255,0.05);
-  padding: 40px;
+  padding: 45px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-  max-width: 500px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  max-width: 520px;
   animation: fadeUp 1s ease;
 }
 
 .avatar {
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
   border-radius: 50%;
   background: linear-gradient(135deg,#6366f1,#8b5cf6);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 38px;
   margin: 0 auto 20px;
+  animation: float 3s infinite ease-in-out;
 }
 
 .bio {
@@ -64,22 +67,23 @@ nav a:hover {
 
 .btn {
   display: inline-block;
-  padding: 12px 22px;
+  padding: 13px 24px;
   background: linear-gradient(135deg,#6366f1,#8b5cf6);
   color: white;
-  border-radius: 10px;
+  border-radius: 12px;
   text-decoration: none;
   font-weight: bold;
   transition: 0.3s;
 }
 .btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(139,92,246,0.5);
 }
 
 /* SECTION */
 .section {
   text-align: center;
-  padding: 60px 20px;
+  padding: 70px 20px;
   max-width: 800px;
   margin: auto;
   animation: fadeUp 1s ease;
@@ -88,9 +92,13 @@ nav a:hover {
 .skills span {
   display: inline-block;
   margin: 10px;
-  padding: 8px 15px;
+  padding: 8px 16px;
   background: rgba(255,255,255,0.08);
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.skills span:hover {
+  background: rgba(255,255,255,0.15);
 }
 
 /* APPS */
@@ -102,30 +110,34 @@ nav a:hover {
 
 .app {
   background: rgba(255,255,255,0.05);
-  padding: 25px;
+  padding: 30px;
   border-radius: 20px;
   margin-bottom: 30px;
-  transition: 0.3s;
+  transition: 0.4s;
   text-align: center;
 }
 
 .app:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
-.app img.badge {
+.badge {
   margin-top: 15px;
   width: 160px;
   transition: 0.3s;
 }
-.app img.badge:hover {
-  transform: scale(1.08);
+.badge:hover {
+  transform: scale(1.1);
 }
 
 /* CONTACT */
 .contact a {
   color: #8b5cf6;
   text-decoration: none;
+}
+.contact a:hover {
+  text-decoration: underline;
 }
 
 /* FOOTER */
@@ -135,16 +147,22 @@ nav a:hover {
   color: #64748b;
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(50px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
 </style>
 

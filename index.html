@@ -55,7 +55,7 @@ nav a:hover {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #22c55e;
+  background: #6366f1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +75,8 @@ h1 {
 .btn {
   display: inline-block;
   padding: 14px 22px;
-  background: #22c55e;
-  color: black;
+  background: #6366f1;
+  color: white;
   text-decoration: none;
   border-radius: 12px;
   font-weight: bold;
@@ -84,7 +84,7 @@ h1 {
 }
 
 .btn:hover {
-  background: #16a34a;
+  background: #4f46e5;
   transform: scale(1.05);
 }
 
@@ -120,26 +120,28 @@ h1 {
 }
 
 .skill:hover {
-  background: #22c55e;
-  color: black;
+  background: #6366f1;
+  color: white;
 }
 
 /* APP CARD */
 .app {
-  margin-top: 20px;
-  padding: 20px;
+  margin-top: 25px;
+  padding: 25px;
   background: rgba(255,255,255,0.05);
   border-radius: 15px;
   transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .app:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* CONTACT */
 a.email {
-  color: #22c55e;
+  color: #6366f1;
   text-decoration: none;
 }
 
@@ -161,7 +163,6 @@ a.email {
 
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#">Home</a>
   <a href="#about">About</a>
@@ -169,7 +170,6 @@ a.email {
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="card">
     <div class="avatar">👨‍💻</div>
@@ -186,7 +186,6 @@ a.email {
   </div>
 </div>
 
-<!-- ABOUT -->
 <div class="section" id="about">
   <h2>About Me</h2>
   <p>
@@ -201,23 +200,33 @@ a.email {
   </div>
 </div>
 
-<!-- APPS -->
 <div class="section" id="apps">
   <h2>My Apps</h2>
 
   <div class="app">
     <p>
       📱 <strong>Muslim Wallpapers & Calligraphy</strong><br>
-      Elegant Islamic wallpapers designed with a clean and spiritual aesthetic.
+      Elegant Islamic wallpapers with a clean and spiritual aesthetic.
     </p>
 
-    <a class="btn" href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" target="_blank">
+    <a class="btn" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
       View on App Store
     </a>
   </div>
+
+  <div class="app">
+    <p>
+      💼 <strong>Freelance Income & Invoices</strong><br>
+      Simple tool to manage freelance income, invoices, and finances.
+    </p>
+
+    <a class="btn" href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
+      View on App Store
+    </a>
+  </div>
+
 </div>
 
-<!-- CONTACT -->
 <div class="section" id="contact">
   <h2>Contact</h2>
 
@@ -228,7 +237,6 @@ a.email {
   </p>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   © 2026 Oussama El Mejdoubi
 </div>

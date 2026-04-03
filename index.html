@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Oussama El Mejdoubi</title>
 
 <style>
@@ -12,7 +11,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: linear-gradient(135deg, #020617, #020617, #0f172a);
   color: white;
-  scroll-behavior: smooth;
 }
 
 /* NAV */
@@ -20,14 +18,11 @@ nav {
   text-align: center;
   padding: 20px;
 }
-
 nav a {
-  color: #94a3b8;
   margin: 0 15px;
+  color: #94a3b8;
   text-decoration: none;
-  transition: 0.3s;
 }
-
 nav a:hover {
   color: white;
 }
@@ -36,8 +31,7 @@ nav a:hover {
 .hero {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 90vh;
+  padding: 60px 20px;
 }
 
 .card {
@@ -45,21 +39,21 @@ nav a:hover {
   background: rgba(255,255,255,0.05);
   padding: 40px;
   border-radius: 20px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   max-width: 500px;
-  animation: fadeIn 1s ease;
+  animation: fadeUp 1s ease;
 }
 
 .avatar {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  background: #6366f1;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 34px;
+  font-size: 35px;
   margin: 0 auto 20px;
 }
 
@@ -69,100 +63,101 @@ h1 {
 
 .bio {
   color: #94a3b8;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.stats {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .btn {
   display: inline-block;
-  padding: 14px 22px;
-  background: #6366f1;
+  padding: 12px 22px;
+  background: linear-gradient(135deg,#6366f1,#8b5cf6);
   color: white;
+  border-radius: 10px;
   text-decoration: none;
-  border-radius: 12px;
   font-weight: bold;
   transition: 0.3s;
 }
-
 .btn:hover {
-  background: #4f46e5;
   transform: scale(1.05);
 }
 
-/* SECTIONS */
+/* SECTION */
 .section {
-  max-width: 700px;
-  margin: 80px auto;
   text-align: center;
-  padding: 0 20px;
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: auto;
+  animation: fadeUp 1s ease;
 }
 
-.section h2 {
-  margin-bottom: 20px;
-}
-
-.section p {
-  color: #94a3b8;
-  line-height: 1.6;
-}
-
-/* SKILLS */
-.skills {
-  margin-top: 20px;
-}
-
-.skill {
+.skills span {
   display: inline-block;
-  margin: 6px;
-  padding: 8px 14px;
-  background: rgba(255,255,255,0.05);
+  margin: 10px;
+  padding: 8px 15px;
+  background: rgba(255,255,255,0.08);
   border-radius: 10px;
-  transition: 0.3s;
 }
 
-.skill:hover {
-  background: #6366f1;
-  color: white;
+/* APPS */
+.apps {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
 }
 
-/* APP CARD */
 .app {
-  margin-top: 25px;
-  padding: 25px;
   background: rgba(255,255,255,0.05);
-  border-radius: 15px;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 30px;
   transition: 0.3s;
-  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .app:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(-5px);
+}
+
+.app img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
 }
 
 /* CONTACT */
-a.email {
-  color: #6366f1;
+.contact a {
+  color: #8b5cf6;
   text-decoration: none;
 }
 
 /* FOOTER */
 .footer {
   text-align: center;
-  margin: 60px 0 20px;
+  padding: 30px;
   color: #64748b;
-  font-size: 12px;
 }
 
 /* ANIMATION */
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
-</head>
 
+</head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#">Home</a>
   <a href="#about">About</a>
@@ -170,23 +165,26 @@ a.email {
   <a href="#contact">Contact</a>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="card">
     <div class="avatar">👨‍💻</div>
-
     <h1>Oussama El Mejdoubi</h1>
 
     <p class="bio">
       Indie iOS developer building clean, high-performance apps with a focus on simplicity and user experience.
     </p>
 
-    <a class="btn" href="https://apps.apple.com/fr/developer/oussama-el-mejdoubi/id1878013560" target="_blank">
-      🚀 Explore My Apps
-    </a>
+    <p class="stats">
+      🚀 2 Apps Published • 📱 iOS Developer • ⚡ Swift / SwiftUI
+    </p>
+
+    <a class="btn" href="#apps">🚀 Explore My Apps</a>
   </div>
 </div>
 
-<div class="section" id="about">
+<!-- ABOUT -->
+<div id="about" class="section">
   <h2>About Me</h2>
   <p>
     I build high-quality iOS apps focused on performance, clean design, and real user value.
@@ -194,49 +192,61 @@ a.email {
   </p>
 
   <div class="skills">
-    <span class="skill">⚡ Swift</span>
-    <span class="skill">📱 SwiftUI</span>
-    <span class="skill">🎨 UI/UX</span>
+    <span>⚡ Swift</span>
+    <span>📱 SwiftUI</span>
+    <span>🎨 UI/UX</span>
   </div>
 </div>
 
-<div class="section" id="apps">
-  <h2>My Apps</h2>
+<!-- WHY -->
+<div class="section">
+  <h2>Why My Apps?</h2>
+  <p>
+    I focus on simplicity, performance, and real user needs — building apps that people actually enjoy using.
+  </p>
+</div>
 
+<!-- APPS -->
+<div id="apps" class="apps">
+  <h2 style="text-align:center;">My Apps</h2>
+
+  <!-- APP 1 -->
   <div class="app">
+    <img src="app1.png">
     <p>
       📱 <strong>Muslim Wallpapers & Calligraphy</strong><br>
       Elegant Islamic wallpapers with a clean and spiritual aesthetic.
     </p>
 
-    <a class="btn" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
-      View on App Store
+    <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150">
     </a>
   </div>
 
+  <!-- APP 2 -->
   <div class="app">
+    <img src="app2.png">
     <p>
       💼 <strong>Freelance Income & Invoices</strong><br>
       Simple tool to manage freelance income, invoices, and finances.
     </p>
 
-    <a class="btn" href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
-      View on App Store
+    <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
+      <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150">
     </a>
   </div>
 
 </div>
 
-<div class="section" id="contact">
+<!-- CONTACT -->
+<div id="contact" class="section contact">
   <h2>Contact</h2>
-
-  <p>
-    📩 <a class="email" href="mailto:OussamaElmejdoubi@protonmail.com">
-      OussamaElmejdoubi@protonmail.com
-    </a>
-  </p>
+  <p>📩 <a href="mailto:OussamaElmejdoubi@protonmail.com">
+    OussamaElmejdoubi@protonmail.com
+  </a></p>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
   © 2026 Oussama El Mejdoubi
 </div>

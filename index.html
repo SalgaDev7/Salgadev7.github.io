@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Oussama El Mejdoubi - iOS Developer</title>
-<meta name="description" content="Indie iOS developer building clean, fast, and user-focused apps using Swift and SwiftUI.">
 
 <style>
 body {
@@ -13,17 +12,12 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   background: linear-gradient(135deg, #020617, #020617, #0f172a);
   color: white;
-  scroll-behavior: smooth;
 }
 
 /* NAV */
 nav {
-  position: sticky;
-  top: 0;
-  background: rgba(2,6,23,0.7);
-  backdrop-filter: blur(10px);
   text-align: center;
-  padding: 15px;
+  padding: 20px;
 }
 nav a {
   margin: 0 15px;
@@ -34,11 +28,15 @@ nav a:hover {
   color: white;
 }
 
+/* SECTION */
+.section {
+  text-align: center;
+  padding: 80px 20px;
+}
+
 /* HERO */
 .hero {
-  text-align: center;
   padding: 100px 20px;
-  animation: fadeUp 1s ease;
 }
 
 .avatar {
@@ -55,45 +53,9 @@ nav a:hover {
 
 h1 {
   margin-top: 20px;
-  font-size: 32px;
 }
 
-p {
-  color: #94a3b8;
-  max-width: 600px;
-  margin: 10px auto;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  border-radius: 12px;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px rgba(99,102,241,0.6);
-}
-
-/* SECTION */
-.section {
-  text-align: center;
-  padding: 80px 20px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s;
-}
-.section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CARDS */
+/* CARD */
 .card {
   background: rgba(255,255,255,0.03);
   padding: 30px;
@@ -107,24 +69,22 @@ p {
   box-shadow: 0 0 25px rgba(99,102,241,0.2);
 }
 
-/* SKILLS */
-.skills span {
-  background: rgba(255,255,255,0.05);
-  padding: 8px 14px;
-  border-radius: 10px;
-  margin: 5px;
-  display: inline-block;
+/* APP STORE SVG BUTTON */
+.store-btn {
+  width: 160px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+.store-btn:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
-/* CONTACT */
-a.email {
-  color: #a78bfa;
-}
-
-/* ANIMATION */
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(40px);}
-  to {opacity:1; transform:translateY(0);}
+/* TEXT */
+p {
+  color: #94a3b8;
+  max-width: 600px;
+  margin: auto;
 }
 </style>
 </head>
@@ -133,52 +93,17 @@ a.email {
 
 <nav>
   <a href="#home">Home</a>
-  <a href="#about">About</a>
   <a href="#apps">Apps</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero section" id="home">
   <div class="avatar">👨‍💻</div>
   <h1>Oussama El Mejdoubi</h1>
   <p>
     I design and ship iOS apps that people actually enjoy using.
     Focused on simplicity, speed, and real user value.
-  </p>
-  <a href="#apps" class="btn">🚀 Discover My Work</a>
-</section>
-
-<!-- WHAT I BUILD -->
-<section class="section">
-  <h2>What I Build</h2>
-  <p>🚀 High-performance iOS apps</p>
-  <p>🎯 Clean & minimal UI design</p>
-  <p>⚡ Fast and optimized experience</p>
-</section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <h2>About Me</h2>
-  <p>
-    I build high-quality iOS apps focused on performance, clean design,
-    and real user value. I enjoy turning ideas into polished,
-    user-friendly experiences using Swift and SwiftUI.
-  </p>
-
-  <div class="skills">
-    <span>⚡ Swift</span>
-    <span>📱 SwiftUI</span>
-    <span>🎨 UI/UX</span>
-  </div>
-</section>
-
-<!-- DIFFERENCE -->
-<section class="section">
-  <h2>What Makes My Apps Different</h2>
-  <p>
-    I focus on simplicity, speed, and usability — not just features.
-    Every app is built to feel smooth, intuitive, and enjoyable.
   </p>
 </section>
 
@@ -189,52 +114,30 @@ a.email {
   <div class="card">
     <h3>📱 Muslim Wallpapers & Calligraphy</h3>
     <p>Elegant Islamic wallpapers with a clean and spiritual aesthetic.</p>
-    <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" class="btn">
-      Download on App Store
+
+    <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
+      <img src="appstore.svg" class="store-btn">
     </a>
   </div>
 
   <div class="card">
     <h3>💼 Freelance Income & Invoices</h3>
     <p>Simple tool to manage freelance income, invoices, and finances.</p>
-    <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" class="btn">
-      Download on App Store
+
+    <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
+      <img src="appstore.svg" class="store-btn">
     </a>
   </div>
 
 </section>
 
-<!-- CTA FINAL -->
-<section class="section">
-  <h2>Let’s Build Something Great 🚀</h2>
-  <p>Open to collaborations, freelance work, or new ideas.</p>
-  <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn">
-    Contact Me
-  </a>
-</section>
-
 <!-- CONTACT -->
 <section class="section" id="contact">
   <h2>Contact</h2>
-  <p>📩 <a class="email" href="mailto:OussamaElmejdoubi@protonmail.com">
-    OussamaElmejdoubi@protonmail.com
-  </a></p>
-  <p style="margin-top:40px; color:#64748b;">© 2026 Oussama El Mejdoubi</p>
+  <p>
+    📩 OussamaElmejdoubi@protonmail.com
+  </p>
 </section>
-
-<script>
-// SCROLL REVEAL
-const sections = document.querySelectorAll(".section");
-
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
-      sec.classList.add("show");
-    }
-  });
-});
-</script>
 
 </body>
 </html>

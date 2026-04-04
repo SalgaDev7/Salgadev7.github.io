@@ -3,284 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Oussama El Mejdoubi - iOS Developer</title>
 <meta name="description" content="Indie iOS developer building clean, fast, and user-focused apps">
-
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#03050f}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;color:#f1f5f9;scroll-behavior:smooth;overflow-x:hidden}
+.pw{background:#03050f;color:#f1f5f9;overflow:hidden}
+.stars{position:absolute;width:100%;height:340px;overflow:hidden;pointer-events:none}
+.orb1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.22) 0%,transparent 70%);top:-120px;left:-80px;animation:drift1 8s ease-in-out infinite}
+.orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.18) 0%,transparent 70%);top:-60px;right:-60px;animation:drift2 10s ease-in-out infinite}
+.orb3{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.12) 0%,transparent 70%);top:160px;left:40%;animation:drift3 12s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-25px,15px)}}
+@keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-30px)}}
+nav{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:0.5px solid rgba(255,255,255,0.06);background:rgba(3,5,15,0.85);backdrop-filter:blur(14px)}
+.nav-logo{font-size:15px;font-weight:600;background:linear-gradient(135deg,#a5b4fc,#c4b5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:rgba(148,163,184,0.8);text-decoration:none;font-size:13px;letter-spacing:0.3px;transition:color 0.2s}
+.nav-links a:hover{color:#f1f5f9}
+.hero{position:relative;text-align:center;padding:90px 24px 80px;overflow:hidden}
+.avatar-ring{width:100px;height:100px;margin:0 auto 28px;position:relative}
+.avatar-ring::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,#6366f1,#8b5cf6,#a78bfa,#6366f1);animation:spin 4s linear infinite}
+.avatar-inner{position:absolute;inset:3px;border-radius:50%;background:#0f0e2a;display:flex;align-items:center;justify-content:center}
+.avatar-emoji{font-size:36px;animation:float 3s ease-in-out infinite;display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,0.12);border:0.5px solid rgba(99,102,241,0.35);border-radius:20px;padding:5px 14px;font-size:11px;color:#a5b4fc;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:20px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#6ee7b7;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-size:42px;font-weight:700;letter-spacing:-1.5px;margin-bottom:14px;background:linear-gradient(135deg,#f8fafc 30%,#a5b4fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.hero-sub{color:#64748b;font-size:15px;max-width:420px;margin:0 auto 36px;line-height:1.7}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:13px 28px;border-radius:12px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;font-size:14px;font-weight:500;text-decoration:none;transition:transform 0.2s,filter 0.2s;display:inline-block}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.btn-ghost{padding:12px 24px;border-radius:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.12);color:#94a3b8;font-size:14px;text-decoration:none;transition:background 0.2s,color 0.2s;display:inline-block}
+.btn-ghost:hover{background:rgba(255,255,255,0.08);color:#f1f5f9}
+.divider{border:none;border-top:0.5px solid rgba(255,255,255,0.05);margin:0 24px}
+.section{padding:70px 32px;max-width:720px;margin:0 auto;text-align:center}
+.section-label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#6366f1;margin-bottom:12px;font-weight:500}
+.section h2{font-size:28px;font-weight:600;letter-spacing:-0.5px;margin-bottom:16px;color:#f1f5f9}
+.section-sub{color:#64748b;font-size:14px;line-height:1.7;max-width:480px;margin:0 auto 40px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+.pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:10px 18px;font-size:13px;color:#cbd5e1;transition:border-color 0.2s,background 0.2s}
+.pill:hover{border-color:rgba(99,102,241,0.4);background:rgba(99,102,241,0.06)}
+.pill-icon{font-size:16px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.skill-card{background:rgba(255,255,255,0.025);border:0.5px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px 16px;text-align:center;transition:border-color 0.2s,transform 0.2s}
+.skill-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-3px)}
+.skill-icon{font-size:24px;margin-bottom:10px;display:block}
+.skill-name{font-size:13px;font-weight:500;color:#e2e8f0;margin-bottom:4px}
+.skill-desc{font-size:11px;color:#475569}
+.apps-grid{display:grid;gap:16px;margin-top:8px}
+.app-card{background:rgba(255,255,255,0.025);border:0.5px solid rgba(255,255,255,0.07);border-radius:20px;padding:28px 28px 24px;text-align:left;transition:border-color 0.2s,transform 0.2s;display:flex;flex-direction:column;gap:16px}
+.app-card:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-4px)}
+.app-header{display:flex;align-items:center;gap:16px}
+.app-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.app-icon.islamic{background:linear-gradient(135deg,#1e1b4b,#2e1065)}
+.app-icon.freelance{background:linear-gradient(135deg,#0c1a0c,#14290f)}
+.app-meta{flex:1}
+.app-name{font-size:16px;font-weight:600;color:#f1f5f9;margin-bottom:3px}
+.app-cat{font-size:12px;color:#6366f1;font-weight:500}
+.app-desc{font-size:13px;color:#64748b;line-height:1.6}
+.app-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.app-tags{display:flex;gap:6px}
+.tag{background:rgba(99,102,241,0.1);border:0.5px solid rgba(99,102,241,0.2);border-radius:6px;padding:3px 9px;font-size:11px;color:#a5b4fc}
+.asbtn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.14);border-radius:10px;padding:9px 16px;text-decoration:none;color:white;font-size:12px;transition:background 0.2s,transform 0.2s}
+.asbtn:hover{background:rgba(255,255,255,0.1);transform:scale(1.04)}
+.asbtn-text{display:flex;flex-direction:column;line-height:1.2}
+.asbtn-sub{font-size:9px;color:#94a3b8;letter-spacing:0.3px}
+.asbtn-main{font-size:13px;font-weight:600}
+.cta-section{padding:70px 32px;text-align:center;position:relative}
+.cta-card{background:rgba(99,102,241,0.07);border:0.5px solid rgba(99,102,241,0.2);border-radius:24px;padding:52px 40px;max-width:520px;margin:0 auto}
+.cta-card h2{font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px;background:linear-gradient(135deg,#f8fafc,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-card p{color:#64748b;font-size:14px;margin-bottom:28px}
+.contact-section{padding:40px 32px 60px;text-align:center}
+.email-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 20px;text-decoration:none;color:#a5b4fc;font-size:14px;transition:border-color 0.2s}
+.email-chip:hover{border-color:rgba(165,180,252,0.4)}
+.footer-text{margin-top:32px;color:#1e293b;font-size:12px}
 
-/* RESET */
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #020617;
-}
-
-/* GLOBAL BACKGROUND (FIXED CLEAN) */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  color: white;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-
-  background:
-    radial-gradient(circle at 30% 30%, rgba(99,102,241,0.12), transparent 60%),
-    radial-gradient(circle at 70% 70%, rgba(139,92,246,0.10), transparent 60%),
-    #020617;
-
-  background-attachment: fixed;
-}
-
-/* NAV */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: rgba(2,6,23,0.85);
-  backdrop-filter: blur(12px);
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  margin: 0 15px;
-  color: #94a3b8;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: white;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 140px 20px 100px;
-}
-
-.avatar {
-  width: 95px;
-  height: 95px;
-  background: linear-gradient(135deg,#6366f1,#8b5cf6);
-  border-radius: 50%;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-h1 {
-  margin-top: 20px;
-  font-size: 34px;
-}
-
-p {
-  color: #94a3b8;
-  max-width: 600px;
-  margin: 10px auto;
-}
-
-/* SECTIONS */
-.section {
-  text-align: center;
-  padding: 100px 20px;
-  background: transparent;
-
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.6s ease;
-}
-
-.section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CARDS */
-.card {
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 30px;
-  margin: 25px auto;
-  max-width: 600px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-}
-
-/* SKILLS */
-.skills span {
-  background: rgba(255,255,255,0.06);
-  padding: 8px 14px;
-  border-radius: 10px;
-  margin: 6px;
-  display: inline-block;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  border-radius: 12px;
-  background: linear-gradient(135deg,#6366f1,#8b5cf6);
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.08);
-}
-
-/* APPSTORE */
-.appstore-btn {
-  width: 160px;
-  margin-top: 20px;
-  transition: 0.3s;
-}
-
-.appstore-btn:hover {
-  transform: scale(1.08);
-  filter: brightness(1.2);
-}
-
-/* EMAIL */
-a.email {
-  color: #a78bfa;
-}
-
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
 </style>
 </head>
-
 <body>
+<div class="pw">
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#apps">Apps</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="avatar">👨‍💻</div>
-  <h1>Oussama El Mejdoubi</h1>
-  <p>
-    I design and ship iOS apps that people actually enjoy using.
-    Focused on simplicity, speed, and real user value.
-  </p>
-</section>
-
-<!-- WHAT I BUILD -->
-<section class="section">
-  <h2>What I Build</h2>
-  <p>🚀 High-performance iOS apps</p>
-  <p>🎯 Clean UI</p>
-  <p>⚡ Fast experience</p>
-</section>
-
-<!-- ABOUT -->
-<section class="section" id="about">
-  <h2>About Me</h2>
-  <p>
-    I build high-quality iOS apps focused on performance,
-    clean design, and real user value.
-  </p>
-
-  <div class="skills">
-    <span>⚡ Swift</span>
-    <span>📱 SwiftUI</span>
-    <span>🎨 UI/UX</span>
+  <div class="stars">
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="orb3"></div>
   </div>
-</section>
 
-<!-- APPS -->
-<section class="section" id="apps">
-  <h2>My Apps</h2>
+  <nav>
+    <span class="nav-logo">OEM</span>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#apps">Apps</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <div class="card">
-    <h3>📱 Muslim Wallpapers & Calligraphy</h3>
-    <p>Elegant Islamic wallpapers with a clean aesthetic.</p>
+  <!-- HERO -->
+  <div class="hero" id="home">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <span class="avatar-emoji">👨‍💻</span>
+      </div>
+    </div>
+    <div class="badge"><span class="badge-dot"></span>Available for work</div>
+    <h1>Oussama El Mejdoubi</h1>
+    <p class="hero-sub">Indie iOS developer crafting apps people actually love — built on simplicity, speed, and taste.</p>
+    <div class="hero-cta-row">
+      <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn-primary">Get in touch</a>
+      <a href="#apps" class="btn-ghost">View apps ↓</a>
+    </div>
+  </div>
 
-    <a href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
-      <svg class="appstore-btn" viewBox="0 0 200 60">
-        <rect width="200" height="60" rx="12" fill="black"/>
-        <text x="100" y="25" fill="white" font-size="10" text-anchor="middle">
-          Download on the
-        </text>
-        <text x="100" y="42" fill="white" font-size="16" text-anchor="middle" font-weight="bold">
-          App Store
-        </text>
-      </svg>
+  <hr class="divider">
+
+  <!-- WHAT I DO -->
+  <div class="section reveal">
+    <div class="section-label">What I do</div>
+    <h2>Built for people, refined for craft</h2>
+    <p class="section-sub">Every app I ship goes through obsessive rounds of design and testing until it feels effortless.</p>
+    <div class="pills">
+      <div class="pill"><span class="pill-icon">🚀</span> High-performance iOS</div>
+      <div class="pill"><span class="pill-icon">🎯</span> Pixel-perfect UI</div>
+      <div class="pill"><span class="pill-icon">⚡</span> Smooth &amp; fast</div>
+      <div class="pill"><span class="pill-icon">📦</span> App Store ready</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <div class="section reveal" id="about">
+    <div class="section-label">About me</div>
+    <h2>Crafting iOS since day one</h2>
+    <p class="section-sub">I focus on the intersection of engineering and design — writing clean Swift code that delivers beautiful experiences.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon">⚡</span>
+        <div class="skill-name">Swift</div>
+        <div class="skill-desc">Modern, fast, reliable</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">📱</span>
+        <div class="skill-name">SwiftUI</div>
+        <div class="skill-desc">Declarative &amp; fluid</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🎨</span>
+        <div class="skill-name">UI / UX</div>
+        <div class="skill-desc">Design that delights</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- APPS -->
+  <div class="section reveal" id="apps">
+    <div class="section-label">My apps</div>
+    <h2>Shipped to the App Store</h2>
+    <p class="section-sub">Real apps, real users, real impact.</p>
+
+    <div class="apps-grid">
+      <div class="app-card">
+        <div class="app-header">
+          <div class="app-icon islamic">🕌</div>
+          <div class="app-meta">
+            <div class="app-name">Muslim Wallpapers &amp; Calligraphy</div>
+            <div class="app-cat">Lifestyle · Aesthetics</div>
+          </div>
+        </div>
+        <div class="app-desc">Elegant Islamic wallpapers and calligraphy art, curated with a clean and peaceful aesthetic for daily inspiration.</div>
+        <div class="app-footer">
+          <div class="app-tags">
+            <span class="tag">SwiftUI</span>
+            <span class="tag">iOS</span>
+          </div>
+          <a class="asbtn" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
+            <svg width="16" height="20" viewBox="0 0 20 24" fill="white"><path d="M16.52 12.62c-.03-3.24 2.65-4.8 2.77-4.87-1.51-2.21-3.86-2.51-4.7-2.54-2-.2-3.9 1.18-4.92 1.18-1.01 0-2.57-1.15-4.23-1.12C3.1 5.31 1.1 6.5.06 8.4c-2.1 3.64-.54 9.02 1.5 11.98 1.01 1.45 2.2 3.07 3.77 3.01 1.52-.06 2.1-.98 3.93-.98 1.84 0 2.37.98 3.98.95 1.63-.03 2.66-1.47 3.66-2.93 1.15-1.67 1.62-3.3 1.65-3.38-.04-.02-3.02-1.16-3.05-4.43zm-2.85-8.14c.84-1.02 1.4-2.43 1.25-3.84-1.2.05-2.67.8-3.53 1.8-.77.89-1.46 2.32-1.28 3.69 1.34.1 2.71-.68 3.56-1.65z"/></svg>
+            <div class="asbtn-text">
+              <span class="asbtn-sub">Download on the</span>
+              <span class="asbtn-main">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-header">
+          <div class="app-icon freelance">💼</div>
+          <div class="app-meta">
+            <div class="app-name">Freelance Income &amp; Invoices</div>
+            <div class="app-cat">Productivity · Finance</div>
+          </div>
+        </div>
+        <div class="app-desc">The simplest way for freelancers to track income, create invoices, and stay on top of their finances — built for solo creators.</div>
+        <div class="app-footer">
+          <div class="app-tags">
+            <span class="tag">SwiftUI</span>
+            <span class="tag">iOS</span>
+          </div>
+          <a class="asbtn" href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
+            <svg width="16" height="20" viewBox="0 0 20 24" fill="white"><path d="M16.52 12.62c-.03-3.24 2.65-4.8 2.77-4.87-1.51-2.21-3.86-2.51-4.7-2.54-2-.2-3.9 1.18-4.92 1.18-1.01 0-2.57-1.15-4.23-1.12C3.1 5.31 1.1 6.5.06 8.4c-2.1 3.64-.54 9.02 1.5 11.98 1.01 1.45 2.2 3.07 3.77 3.01 1.52-.06 2.1-.98 3.93-.98 1.84 0 2.37.98 3.98.95 1.63-.03 2.66-1.47 3.66-2.93 1.15-1.67 1.62-3.3 1.65-3.38-.04-.02-3.02-1.16-3.05-4.43zm-2.85-8.14c.84-1.02 1.4-2.43 1.25-3.84-1.2.05-2.67.8-3.53 1.8-.77.89-1.46 2.32-1.28 3.69 1.34.1 2.71-.68 3.56-1.65z"/></svg>
+            <div class="asbtn-text">
+              <span class="asbtn-sub">Download on the</span>
+              <span class="asbtn-main">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div class="cta-card">
+      <h2>Let's build something great</h2>
+      <p>Open to collaborations, freelance projects, and new ideas. Let's talk.</p>
+      <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn-primary">Send a message →</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section reveal" id="contact">
+    <a href="mailto:OussamaElmejdoubi@protonmail.com" class="email-chip">
+      📩 OussamaElmejdoubi@protonmail.com
     </a>
+    <p class="footer-text">© 2026 Oussama El Mejdoubi · Built with care</p>
   </div>
 
-  <div class="card">
-    <h3>💼 Freelance Income & Invoices</h3>
-    <p>Simple tool to manage freelance income.</p>
-
-    <a href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
-      <svg class="appstore-btn" viewBox="0 0 200 60">
-        <rect width="200" height="60" rx="12" fill="black"/>
-        <text x="100" y="25" fill="white" font-size="10" text-anchor="middle">
-          Download on the
-        </text>
-        <text x="100" y="42" fill="white" font-size="16" text-anchor="middle" font-weight="bold">
-          App Store
-        </text>
-      </svg>
-    </a>
-  </div>
-
-</section>
-
-<!-- CTA -->
-<section class="section">
-  <h2>Let’s Build Something Great 🚀</h2>
-  <p>Open to collaborations or freelance work.</p>
-  <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn">
-    Contact Me
-  </a>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <h2>Contact</h2>
-  <p>📩 <a class="email" href="mailto:OussamaElmejdoubi@protonmail.com">
-    OussamaElmejdoubi@protonmail.com
-  </a></p>
-  <p style="margin-top:40px; color:#64748b;">© 2026 Oussama El Mejdoubi</p>
-</section>
+</div>
 
 <script>
-const sections = document.querySelectorAll(".section");
-
-const reveal = () => {
-  const trigger = window.innerHeight * 0.85;
-
-  sections.forEach(sec => {
-    if (sec.getBoundingClientRect().top < trigger) {
-      sec.classList.add("show");
-    }
-  });
-};
-
-window.addEventListener("scroll", reveal);
-window.addEventListener("load", reveal);
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.12 });
+reveals.forEach(r => observer.observe(r));
 </script>
-
 </body>
 </html>

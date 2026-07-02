@@ -1,5 +1,4 @@
 google.com, pub-6029593096623902, DIRECT, f08c47fec0942fa0
-vungle.com, 6a4541959ef99bc872e3e8c0, DIRECT, c107d686becd2d77
 facebook.com, 1695434468242082, DIRECT, c3e20eee3f780d68
 bold-win.com, 165, RESELLER, 71746737d0bab951
 e-planning.net, 6a7f877127485fdb, RESELLER, c1ba615865ed87b2

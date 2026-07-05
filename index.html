@@ -4,355 +4,790 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oussama El Mejdoubi — iOS Developer</title>
-<meta name="description" content="Indie iOS developer crafting apps people actually love.">
+<meta name="description" content="Oussama El Mejdoubi — Indie iOS developer from Morocco. Swift & SwiftUI. 5+ apps shipped on the App Store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--indigo:#6366f1;--violet:#8b5cf6;--lavender:#a5b4fc;--navy:#03050f;--ink:#0f1729;--muted:#64748b;--soft:#94a3b8;--dim:#1e293b;--card:rgba(255,255,255,0.028);--border:rgba(255,255,255,0.07)}
-html,body{background:var(--navy);scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;color:#f1f5f9;overflow-x:hidden}
+  :root{
+    --ink:#121A2C;
+    --ink-2:#1B2540;
+    --paper:#F6F2E9;
+    --coral:#FF6B4D;
+    --teal:#3FA796;
+    --gold:#E8B559;
+    --line: rgba(246,242,233,0.12);
+    --muted: rgba(246,242,233,0.62);
+    --radius: 18px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
 
-/* NAV */
-nav{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:18px 36px;background:rgba(3,5,15,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--indigo),var(--violet));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;letter-spacing:-0.5px}
-.logo-name{font-size:14px;font-weight:600;color:#e2e8f0;letter-spacing:-0.3px}
-.nav-links{display:flex;gap:4px}
-.nav-links a{color:var(--soft);text-decoration:none;font-size:13px;padding:6px 14px;border-radius:8px;transition:background 0.15s,color 0.15s}
-.nav-links a:hover{background:rgba(255,255,255,0.06);color:#f1f5f9}
-.nav-cta{padding:7px 16px;border-radius:8px;background:linear-gradient(135deg,var(--indigo),var(--violet));color:white;text-decoration:none;font-size:13px;font-weight:500;transition:filter 0.2s,transform 0.15s}
-.nav-cta:hover{filter:brightness(1.15);transform:translateY(-1px)}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
 
-/* HERO */
-.hero{position:relative;text-align:center;padding:96px 24px 88px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(99,102,241,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.045) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 100%)}
-.orb{position:absolute;border-radius:50%;pointer-events:none}
-.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.18) 0%,transparent 65%);top:-200px;left:-100px;animation:d1 9s ease-in-out infinite}
-.o2{width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,0.15) 0%,transparent 65%);top:-100px;right:-80px;animation:d2 11s ease-in-out infinite}
-.o3{width:350px;height:350px;background:radial-gradient(circle,rgba(99,102,241,0.10) 0%,transparent 65%);top:180px;left:38%;animation:d3 13s ease-in-out infinite}
-@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-18px)}}
-@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,14px)}}
-@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-22px)}}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
 
-.avt-wrap{position:relative;width:88px;height:88px;margin:0 auto 24px}
-.avt-ring{position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,var(--indigo),var(--violet),#c4b5fd,var(--indigo));animation:spin 5s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.avt-inner{position:absolute;inset:3px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:32px;animation:bob 3.5s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  /* ---------- motion system ---------- */
+  @keyframes rise{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes floaty{
+    0%, 100%{transform:translateY(0) rotate(-0.3deg);}
+    50%{transform:translateY(-10px) rotate(0.3deg);}
+  }
+  @keyframes growLine{
+    from{transform:scaleX(0);}
+    to{transform:scaleX(1);}
+  }
+  @keyframes popIn{
+    from{opacity:0; transform:scale(0.92);}
+    to{opacity:1; transform:scale(1);}
+  }
 
-.status{display:inline-flex;align-items:center;gap:7px;background:rgba(99,102,241,0.10);border:0.5px solid rgba(99,102,241,0.30);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--lavender);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:22px}
-.sdot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(52,211,153,0.4)}50%{opacity:0.5;box-shadow:0 0 0 4px rgba(52,211,153,0)}}
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity .8s cubic-bezier(.16,.8,.24,1), transform .8s cubic-bezier(.16,.8,.24,1);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+  .stagger > *{transition-delay:calc(var(--i, 0) * 90ms);}
 
-.hero h1{font-size:46px;font-weight:700;letter-spacing:-2px;line-height:1.05;margin-bottom:6px;background:linear-gradient(160deg,#fff 40%,var(--lavender) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-role{font-size:16px;color:var(--muted);margin-bottom:14px;letter-spacing:0.2px}
-.hero-desc{color:var(--soft);font-size:15px;max-width:400px;margin:0 auto 40px;line-height:1.75}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-p{padding:13px 30px;border-radius:12px;background:linear-gradient(135deg,var(--indigo),var(--violet));color:white;font-size:14px;font-weight:500;text-decoration:none;transition:transform 0.2s,filter 0.2s;letter-spacing:-0.2px;display:inline-block}
-.btn-p:hover{transform:translateY(-2px);filter:brightness(1.12)}
-.btn-s{padding:12px 26px;border-radius:12px;background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.10);color:var(--soft);font-size:14px;text-decoration:none;transition:all 0.2s;display:inline-block}
-.btn-s:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.18);color:#f1f5f9}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none;}
+  }
 
-.stats-row{display:flex;justify-content:center;gap:0;margin-top:52px;position:relative;max-width:420px;margin-left:auto;margin-right:auto}
-.stats-row::before{content:'';position:absolute;inset:0;border:0.5px solid var(--border);border-radius:16px;pointer-events:none}
-.stat{flex:1;padding:20px 16px;text-align:center}
-.stat+.stat{border-left:0.5px solid var(--border)}
-.stat-n{font-size:22px;font-weight:700;letter-spacing:-1px;margin-bottom:4px;background:linear-gradient(135deg,#fff,var(--lavender));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-l{font-size:11px;color:var(--muted);letter-spacing:0.3px}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
 
-/* LAYOUT */
-.divider{border:none;border-top:0.5px solid var(--border)}
-.sec{padding:72px 36px;max-width:740px;margin:0 auto;text-align:center}
-.sec-eyebrow{font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--indigo);margin-bottom:14px}
-.sec h2{font-size:30px;font-weight:700;letter-spacing:-1px;color:#f1f5f9;margin-bottom:14px;line-height:1.2}
-.sec-sub{color:var(--muted);font-size:14px;line-height:1.75;max-width:460px;margin:0 auto 44px}
+  /* ---------- zellige texture ---------- */
+  .zellige-strip{
+    height:10px;
+    width:100%;
+    background:
+      repeating-linear-gradient(135deg,
+        var(--coral) 0 10px,
+        var(--gold) 10px 20px,
+        var(--teal) 20px 30px,
+        transparent 30px 40px);
+    opacity:0.9;
+    transform-origin:left center;
+    animation:growLine 1.1s cubic-bezier(.16,.8,.24,1) both;
+    animation-delay:.15s;
+  }
 
-/* FEATURES */
-.feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.feat{background:var(--card);border:0.5px solid var(--border);border-radius:16px;padding:24px;text-align:left;transition:border-color 0.2s,transform 0.2s,background 0.2s;cursor:default}
-.feat:hover{border-color:rgba(99,102,241,0.35);background:rgba(99,102,241,0.05);transform:translateY(-3px)}
-.feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(99,102,241,0.12);border:0.5px solid rgba(99,102,241,0.20);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px}
-.feat-title{font-size:14px;font-weight:600;color:#e2e8f0;margin-bottom:6px}
-.feat-desc{font-size:12px;color:var(--muted);line-height:1.6}
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,26,44,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .4s ease, box-shadow .4s ease;
+  }
+  header.site.scrolled{
+    border-bottom-color:var(--line);
+    box-shadow:0 12px 30px -18px rgba(0,0,0,0.5);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--coral);
+    box-shadow:0 0 0 4px rgba(255,107,77,0.18);
+  }
+  .nav-links{
+    display:flex; gap:32px; list-style:none; margin:0; padding:0;
+    font-size:0.92rem;
+    color:var(--muted);
+  }
+  .nav-links a{
+    text-decoration:none;
+    transition:color .2s ease;
+    padding:6px 2px;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--paper);}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--coral); color:#181018;
+    font-weight:600; font-size:0.88rem;
+    padding:9px 16px; border-radius:999px;
+    text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(255,107,77,0.35);}
+  .burger{display:none;}
 
-/* SKILLS */
-.skill-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.sk{background:var(--card);border:0.5px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;transition:border-color 0.2s,transform 0.2s}
-.sk:hover{border-color:rgba(99,102,241,0.35);transform:translateY(-3px)}
-.sk-icon{font-size:26px;margin-bottom:12px;display:block}
-.sk-name{font-size:13px;font-weight:600;color:#e2e8f0;margin-bottom:4px}
-.sk-sub{font-size:11px;color:var(--muted)}
-.sk-bar{height:2px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:14px;overflow:hidden}
-.sk-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--indigo),var(--violet));transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.4,0,.2,1) 0.2s}
-.sk-fill.ani{transform:scaleX(1)}
+  /* ---------- hero ---------- */
+  .hero{
+    padding:88px 0 96px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute;
+    width:520px; height:520px;
+    left:var(--gx, 20%); top:var(--gy, 20%);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(255,107,77,0.16), rgba(63,167,150,0.08) 45%, transparent 70%);
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .6s ease;
+    z-index:0;
+  }
+  .hero-glow.active{opacity:1;}
+  .hero > .wrap{position:relative; z-index:1;}
+  .hero-copy > *{
+    opacity:0;
+    animation:rise .85s cubic-bezier(.16,.8,.24,1) both;
+  }
+  .hero-copy > .eyebrow{animation-delay:.05s;}
+  .hero-copy > h1{animation-delay:.16s;}
+  .hero-copy > .lede{animation-delay:.32s;}
+  .hero-copy > .hero-actions{animation-delay:.46s;}
+  .hero-copy > .hero-meta{animation-delay:.6s;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px; background:var(--teal);
+    transform-origin:left center;
+    animation:growLine .6s cubic-bezier(.16,.8,.24,1) both;
+    animation-delay:.5s;
+  }
+  h1{
+    font-family:var(--display);
+    font-size:clamp(2.4rem, 4.6vw, 3.7rem);
+    line-height:1.05;
+    margin:0 0 22px;
+    letter-spacing:-0.01em;
+  }
+  h1 .accent{color:var(--coral);}
+  .lede{
+    font-size:1.08rem;
+    color:var(--muted);
+    max-width:46ch;
+    margin:0 0 34px;
+  }
+  .hero-actions{
+    display:flex; gap:14px; flex-wrap:wrap;
+    margin-bottom:38px;
+  }
+  .btn{
+    font-family:var(--body);
+    font-weight:600; font-size:0.95rem;
+    padding:13px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:9px;
+    transition:transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn-primary{
+    background:var(--paper); color:var(--ink);
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--paper);
+  }
+  .btn-ghost:hover{border-color:var(--teal); transform:translateY(-2px);}
 
-/* APP CARDS */
-.app-card{background:var(--card);border:0.5px solid var(--border);border-radius:20px;padding:28px;margin-bottom:14px;display:flex;flex-direction:column;gap:20px;transition:border-color 0.2s,transform 0.2s,background 0.2s;cursor:default}
-.app-card:hover{border-color:rgba(99,102,241,0.30);background:rgba(99,102,241,0.04);transform:translateY(-3px)}
-.app-top{display:flex;align-items:flex-start;gap:18px}
-.app-ic{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;border:0.5px solid rgba(255,255,255,0.07)}
-.ic-mos{background:linear-gradient(145deg,#1a1744,#2d1a5c)}
-.ic-fr{background:linear-gradient(145deg,#0a1f0a,#152b15)}
-.app-info{flex:1}
-.app-name{font-size:16px;font-weight:700;color:#f1f5f9;letter-spacing:-0.3px;margin-bottom:4px}
-.app-cat{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--indigo);font-weight:500;letter-spacing:0.3px}
-.cat-dot{width:4px;height:4px;border-radius:50%;background:var(--indigo);display:inline-block}
-.app-rating{display:flex;align-items:center;gap:5px;margin-top:8px}
-.stars-wrap{color:#fbbf24;font-size:12px;letter-spacing:1px}
-.rating-text{font-size:11px;color:var(--muted)}
-.app-desc{font-size:13px;color:var(--muted);line-height:1.65;text-align:left}
-.app-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.tag-row{display:flex;gap:6px;flex-wrap:wrap}
-.tg{background:rgba(99,102,241,0.08);border:0.5px solid rgba(99,102,241,0.18);border-radius:6px;padding:3px 10px;font-size:11px;color:#a5b4fc;font-weight:500}
-.dl-btn{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.12);border-radius:11px;padding:10px 18px;text-decoration:none;color:white;transition:background 0.2s,transform 0.15s,border-color 0.2s}
-.dl-btn:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.22);transform:scale(1.03)}
-.dl-sub{font-size:9px;color:var(--soft);letter-spacing:0.3px;display:block;line-height:1}
-.dl-main{font-size:13px;font-weight:700;display:block;line-height:1.4}
+  .hero-meta{
+    display:flex; gap:26px; flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+  .hero-meta span b{color:var(--paper); font-weight:500;}
 
-/* CTA */
-.cta-wrap{padding:0 36px 72px}
-.cta-card{background:rgba(99,102,241,0.07);border:0.5px solid rgba(99,102,241,0.18);border-radius:24px;padding:56px 48px;max-width:600px;margin:0 auto;text-align:center;position:relative;overflow:hidden}
-.cta-orb{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.20) 0%,transparent 70%);top:-100px;right:-80px;pointer-events:none}
-.cta-card h2{font-size:30px;font-weight:700;letter-spacing:-1px;margin-bottom:12px;background:linear-gradient(135deg,#fff,var(--lavender));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.cta-card p{color:var(--muted);font-size:14px;margin-bottom:32px;line-height:1.7}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  /* ---------- lock screen mockup (signature element) ---------- */
+  .phone-stage{
+    display:flex; justify-content:center;
+    perspective:1200px;
+  }
+  .phone{
+    width:272px;
+    height:560px;
+    border-radius:44px;
+    padding:12px;
+    background:linear-gradient(180deg,#232c46,#141b30);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
+    position:relative;
+    opacity:0;
+    transform:translateY(40px) rotate(-6deg) scale(.94);
+    animation:phoneIn 1s cubic-bezier(.16,.8,.24,1) .3s both,
+              floaty 6.5s ease-in-out 1.3s infinite;
+  }
+  @keyframes phoneIn{
+    to{opacity:1; transform:translateY(0) rotate(0deg) scale(1);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .phone{animation:none; opacity:1;}
+  }
+  .phone::before{
+    content:"";
+    position:absolute; top:22px; left:50%; transform:translateX(-50%);
+    width:90px; height:24px; border-radius:14px; background:#0b0f1c; z-index:5;
+  }
+  .screen{
+    position:relative;
+    width:100%; height:100%;
+    border-radius:34px;
+    overflow:hidden;
+    background:var(--wallpaper, linear-gradient(160deg,#1B2540,#12182B));
+    transition:background 1.2s ease;
+  }
+  .screen .pattern{
+    position:absolute; inset:0;
+    opacity:0.16;
+    background-image:
+      radial-gradient(circle at 20% 20%, transparent 0 14px, var(--gold) 14px 15px, transparent 15px),
+      radial-gradient(circle at 60% 60%, transparent 0 14px, var(--teal) 14px 15px, transparent 15px),
+      radial-gradient(circle at 80% 10%, transparent 0 10px, var(--coral) 10px 11px, transparent 11px);
+    background-size:70px 70px, 90px 90px, 60px 60px;
+  }
+  .screen .time{
+    position:relative; z-index:2;
+    text-align:center;
+    margin-top:64px;
+    font-family:var(--display);
+    font-weight:600;
+  }
+  .screen .time .hh{font-size:3.4rem; letter-spacing:-0.02em;}
+  .screen .time .dd{font-size:0.85rem; color:rgba(246,242,233,0.75); margin-top:4px; font-family:var(--body);}
+  .widget{
+    position:relative; z-index:2;
+    margin:26px 20px 0;
+    background:rgba(20,27,48,0.55);
+    border:1px solid rgba(246,242,233,0.14);
+    backdrop-filter:blur(6px);
+    border-radius:20px;
+    padding:16px 18px;
+    transition:opacity .5s ease;
+  }
+  .widget .wlabel{
+    font-family:var(--mono);
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:block;
+    margin-bottom:8px;
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .widget .wtitle{
+    font-family:var(--display);
+    font-size:0.98rem;
+    font-weight:600;
+    margin-bottom:4px;
+    transition:opacity .35s ease .04s, transform .35s ease .04s;
+  }
+  .widget .wtext{
+    font-size:0.8rem;
+    color:rgba(246,242,233,0.72);
+    transition:opacity .35s ease .08s, transform .35s ease .08s;
+  }
+  .widget.swapping .wlabel,
+  .widget.swapping .wtitle,
+  .widget.swapping .wtext{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  .dock .icon{
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .3s ease;
+    cursor:pointer;
+  }
+  .dock .icon.pulse{
+    transform:scale(1.14);
+    background:rgba(246,242,233,0.2);
+  }
+  .dock{
+    position:absolute; bottom:26px; left:20px; right:20px; z-index:2;
+    display:flex; justify-content:space-between;
+  }
+  .dock .icon{
+    width:44px; height:44px; border-radius:12px;
+    background:rgba(246,242,233,0.1);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+  }
 
-/* FOOTER */
-.foot{padding:32px 36px 52px;text-align:center;border-top:0.5px solid var(--border)}
-.email-row{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);border:0.5px solid var(--border);border-radius:12px;padding:12px 22px;text-decoration:none;color:var(--lavender);font-size:14px;transition:border-color 0.2s,background 0.2s;margin-bottom:24px}
-.email-row:hover{border-color:rgba(165,180,252,0.35);background:rgba(99,102,241,0.06)}
-.foot-copy{font-size:12px;color:var(--dim)}
+  /* ---------- section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:20px; margin-bottom:44px; flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    margin:0;
+  }
+  .section-tag{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--muted);
+    letter-spacing:0.06em;
+  }
 
-/* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.55s cubic-bezier(.4,0,.2,1),transform 0.55s cubic-bezier(.4,0,.2,1)}
-.reveal.vis{opacity:1;transform:none}
+  /* ---------- about ---------- */
+  .about{
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:56px;
+  }
+  .about p{color:var(--muted); font-size:1.02rem; max-width:60ch;}
+  .about p strong{color:var(--paper); font-weight:600;}
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .stat{
+    background:var(--ink);
+    padding:22px 18px;
+  }
+  .stat .num{
+    font-family:var(--display);
+    font-size:2rem;
+    color:var(--coral);
+    display:inline-block;
+  }
+  .reveal.in-view .stat:nth-child(1) .num{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .05s both;}
+  .reveal.in-view .stat:nth-child(2) .num{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .16s both;}
+  .reveal.in-view .stat:nth-child(3) .num{animation:popIn .5s cubic-bezier(.34,1.56,.64,1) .27s both;}
+  .stat .lbl{
+    font-size:0.78rem;
+    color:var(--muted);
+    margin-top:4px;
+  }
 
-/* RESPONSIVE */
-@media(max-width:600px){
-  nav{padding:14px 20px}
-  .nav-links{display:none}
-  .hero{padding:72px 20px 64px}
-  .hero h1{font-size:34px;letter-spacing:-1.5px}
-  .sec{padding:56px 20px}
-  .feat-grid{grid-template-columns:1fr}
-  .skill-row{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .app-top{flex-direction:column;gap:14px}
-  .cta-wrap{padding:0 20px 56px}
-  .cta-card{padding:36px 24px}
-  .foot{padding:24px 20px 40px}
-  .stats-row{max-width:100%}
-}
+  /* ---------- apps ---------- */
+  .apps-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .app-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px;
+    text-decoration:none;
+    color:var(--paper);
+    display:flex; flex-direction:column; gap:14px;
+    transition:transform .25s ease, border-color .25s ease, background .25s ease;
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  }
+  .app-card:hover, .app-card:focus-visible{
+    transform:translateY(-4px);
+    border-color: var(--card-accent, var(--teal));
+    background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+  }
+  .app-icon{
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    background:var(--card-accent, var(--teal));
+    color:#101423;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  .app-card:hover .app-icon{
+    transform:rotate(-8deg) scale(1.08);
+  }
+  .app-card h3{
+    font-family:var(--display);
+    font-size:1.12rem;
+    margin:0;
+  }
+  .app-card .app-desc{
+    color:var(--muted);
+    font-size:0.92rem;
+    flex-grow:1;
+  }
+  .app-link{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--card-accent, var(--teal));
+    display:flex; align-items:center; gap:6px;
+  }
+  .app-card:hover .app-link{gap:9px;}
+  .app-link svg{transition:transform .25s ease;}
+  .app-card:hover .app-link svg{transform:translate(2px,-2px);}
+
+  /* ---------- skills ---------- */
+  .skills{border-top:1px solid var(--line);}
+  .skill-row{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .skill-pill{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    padding:9px 16px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--muted);
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), border-color .25s ease, color .25s ease;
+  }
+  .skill-pill:hover{
+    transform:translateY(-3px);
+    border-color:var(--teal);
+    color:var(--paper);
+  }
+  .skill-pill b{color:var(--paper); font-weight:500;}
+
+  /* ---------- contact ---------- */
+  .contact{
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .contact h2{
+    font-family:var(--display);
+    font-size:clamp(2rem,4vw,3rem);
+    margin:0 0 18px;
+    max-width:16ch;
+    margin-left:auto; margin-right:auto;
+  }
+  .contact p{color:var(--muted); margin-bottom:36px;}
+  .contact-actions{
+    display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:28px 0;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+    font-size:0.82rem;
+    color:var(--muted);
+  }
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--paper);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 880px){
+    .hero{grid-template-columns:1fr; padding-top:56px;}
+    .phone-stage{order:-1; margin-bottom:12px;}
+    .phone{width:230px; height:474px;}
+    .about{grid-template-columns:1fr;}
+    .apps-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    section{padding:64px 0;}
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">
-    <div class="logo-mark">OE</div>
-    <span class="logo-name">Oussama El Mejdoubi</span>
+<header class="site">
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="dot"></span> Oussama El Mejdoubi</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="mailto:OussamaElmejdoubi@protonmail.com">Say hello</a>
+    </nav>
   </div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#apps">Apps</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a href="mailto:OussamaElmejdoubi@protonmail.com" class="nav-cta">Hire me</a>
-</nav>
+</header>
+<div class="zellige-strip"></div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="grid-bg"></div>
-    <div class="orb o1"></div>
-    <div class="orb o2"></div>
-    <div class="orb o3"></div>
-  </div>
-  <div class="avt-wrap">
-    <div class="avt-ring"></div>
-    <div class="avt-inner">👨‍💻</div>
-  </div>
-  <div class="status"><span class="sdot"></span>Available for work</div>
-  <h1>iOS Developer<br>&amp; Designer</h1>
-  <p class="hero-role">Oussama El Mejdoubi</p>
-  <p class="hero-desc">Indie maker crafting apps people actually love — where clean code meets obsessive design taste.</p>
-  <div class="hero-btns">
-    <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn-p">Get in touch →</a>
-    <a href="#apps" class="btn-s">View my apps</a>
-  </div>
-  <div class="stats-row" style="margin-top:52px">
-    <div class="stat"><div class="stat-n">2+</div><div class="stat-l">Apps shipped</div></div>
-    <div class="stat"><div class="stat-n">100%</div><div class="stat-l">SwiftUI</div></div>
-    <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Iterations</div></div>
-  </div>
-</section>
+<main>
+  <section class="hero" id="hero-section">
+    <div class="hero-glow" id="hero-glow"></div>
+    <div class="wrap" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;">
+      <div class="hero-copy">
+        <div class="eyebrow">Indie iOS Developer · Morocco</div>
+        <h1>Building small apps<br> people open <span class="accent">every day.</span></h1>
+        <p class="lede">I'm Oussama, a 20-year-old indie developer from Morocco. I design and ship iOS apps end to end — Swift, SwiftUI, and a lot of attention to the little details on the lock screen.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://apps.apple.com/us/developer/oussama-el-mejdoubi/id1878013560" target="_blank" rel="noopener">View on the App Store</a>
+          <a class="btn btn-ghost" href="mailto:OussamaElmejdoubi@protonmail.com">OussamaElmejdoubi@protonmail.com</a>
+        </div>
+        <div class="hero-meta">
+          <span><b>5+</b> apps shipped</span>
+          <span><b>Swift</b> / SwiftUI</span>
+          <span><b>Rabat</b>, Morocco</span>
+        </div>
+      </div>
 
-<hr class="divider">
-
-<!-- WHAT I BUILD -->
-<section class="sec reveal" id="about">
-  <div class="sec-eyebrow">What I build</div>
-  <h2>Crafted for real people</h2>
-  <p class="sec-sub">Every pixel is intentional. Every interaction is earned. I obsess over the details so users never have to think.</p>
-  <div class="feat-grid">
-    <div class="feat">
-      <div class="feat-icon">🚀</div>
-      <div class="feat-title">High performance</div>
-      <div class="feat-desc">60fps animations, instant launches, optimized memory — fast by default, not by accident.</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">🎯</div>
-      <div class="feat-title">Pixel-perfect UI</div>
-      <div class="feat-desc">Typography, spacing, color — every decision made with intention and taste.</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">⚡</div>
-      <div class="feat-title">SwiftUI native</div>
-      <div class="feat-desc">Modern declarative code that feels right at home on Apple's platforms.</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">📦</div>
-      <div class="feat-title">App Store ready</div>
-      <div class="feat-desc">From concept to ship — metadata, screenshots, privacy, reviews handled.</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- SKILLS -->
-<section class="sec reveal">
-  <div class="sec-eyebrow">Skills</div>
-  <h2>The full stack — iOS edition</h2>
-  <p class="sec-sub">Deep expertise in the Apple ecosystem, from architecture to animation.</p>
-  <div class="skill-row">
-    <div class="sk">
-      <span class="sk-icon">⚡</span>
-      <div class="sk-name">Swift</div>
-      <div class="sk-sub">Modern &amp; expressive</div>
-      <div class="sk-bar"><div class="sk-fill" data-width="95%"></div></div>
-    </div>
-    <div class="sk">
-      <span class="sk-icon">📱</span>
-      <div class="sk-name">SwiftUI</div>
-      <div class="sk-sub">Declarative &amp; fluid</div>
-      <div class="sk-bar"><div class="sk-fill" data-width="90%"></div></div>
-    </div>
-    <div class="sk">
-      <span class="sk-icon">🎨</span>
-      <div class="sk-name">UI / UX</div>
-      <div class="sk-sub">Design that delights</div>
-      <div class="sk-bar"><div class="sk-fill" data-width="88%"></div></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- APPS -->
-<section class="sec reveal" id="apps">
-  <div class="sec-eyebrow">My apps</div>
-  <h2>Shipped &amp; loved</h2>
-  <p class="sec-sub">Real products on the App Store, built end-to-end — design, code, launch.</p>
-
-  <div class="app-card">
-    <div class="app-top">
-      <div class="app-ic ic-mos">🕌</div>
-      <div class="app-info">
-        <div class="app-name">Muslim Wallpapers &amp; Calligraphy</div>
-        <div class="app-cat"><span class="cat-dot"></span>&nbsp;Lifestyle &nbsp;·&nbsp; <span class="cat-dot"></span>&nbsp;Aesthetics</div>
-        <div class="app-rating">
-          <div class="stars-wrap">★★★★★</div>
-          <span class="rating-text">App Store</span>
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen" id="screen">
+            <div class="pattern"></div>
+            <div class="time">
+              <div class="hh">9:41</div>
+              <div class="dd" id="wallpaper-date">Sunday, July 5</div>
+            </div>
+            <div class="widget" id="widget">
+              <span class="wlabel" id="w-label">Verse of the Day</span>
+              <div class="wtitle" id="w-title">Christian Verse of the Day</div>
+              <div class="wtext" id="w-text">A new verse, every morning, right on your lock screen.</div>
+            </div>
+            <div class="dock" id="dock">
+              <div class="icon" data-app="0">✝️</div>
+              <div class="icon" data-app="2">🌙</div>
+              <div class="icon" data-app="3">🧾</div>
+              <div class="icon" data-app="1">🖼️</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="app-desc">Elegant Islamic wallpapers and calligraphy art — curated with a clean, peaceful aesthetic for daily inspiration and home screen beauty.</div>
-    <div class="app-foot">
-      <div class="tag-row">
-        <span class="tg">SwiftUI</span>
-        <span class="tg">iOS</span>
-        <span class="tg">Lifestyle</span>
-      </div>
-      <a class="dl-btn" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank">
-        <svg width="16" height="20" viewBox="0 0 20 24" fill="white"><path d="M16.52 12.62c-.03-3.24 2.65-4.8 2.77-4.87-1.51-2.21-3.86-2.51-4.7-2.54-2-.2-3.9 1.18-4.92 1.18-1.01 0-2.57-1.15-4.23-1.12C3.1 5.31 1.1 6.5.06 8.4c-2.1 3.64-.54 9.02 1.5 11.98 1.01 1.45 2.2 3.07 3.77 3.01 1.52-.06 2.1-.98 3.93-.98 1.84 0 2.37.98 3.98.95 1.63-.03 2.66-1.47 3.66-2.93 1.15-1.67 1.62-3.3 1.65-3.38-.04-.02-3.02-1.16-3.05-4.43zm-2.85-8.14c.84-1.02 1.4-2.43 1.25-3.84-1.2.05-2.67.8-3.53 1.8-.77.89-1.46 2.32-1.28 3.69 1.34.1 2.71-.68 3.56-1.65z"/></svg>
-        <div><span class="dl-sub">Download on the</span><span class="dl-main">App Store</span></div>
-      </a>
-    </div>
-  </div>
+  </section>
 
-  <div class="app-card">
-    <div class="app-top">
-      <div class="app-ic ic-fr">💼</div>
-      <div class="app-info">
-        <div class="app-name">Freelance Income &amp; Invoices</div>
-        <div class="app-cat"><span class="cat-dot"></span>&nbsp;Productivity &nbsp;·&nbsp; <span class="cat-dot"></span>&nbsp;Finance</div>
-        <div class="app-rating">
-          <div class="stars-wrap">★★★★★</div>
-          <span class="rating-text">App Store</span>
+  <section class="about" id="about">
+    <div class="wrap" style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;">
+      <div class="reveal">
+        <div class="section-tag">01 / About</div>
+        <h2 style="font-family:var(--display); margin-top:14px;">A one-person studio,<br>shipping on the App Store.</h2>
+      </div>
+      <div class="reveal">
+        <p><strong>I'm Oussama El Mejdoubi</strong>, a 20-year-old independent iOS developer from Morocco. I build native apps with <strong>Swift and SwiftUI</strong> — from the first sketch of an idea to a live listing on the App Store.</p>
+        <p style="margin-top:18px;">My work spans lock-screen widgets, wallpapers, and small productivity tools — apps that are simple to open, easy to trust, and made to be used daily rather than once.</p>
+        <div class="stat-grid reveal" style="margin-top:32px;">
+          <div class="stat"><div class="num">5+</div><div class="lbl">Apps shipped</div></div>
+          <div class="stat"><div class="num">1</div><div class="lbl">Person team</div></div>
+          <div class="stat"><div class="num">🇲🇦</div><div class="lbl">Based in Morocco</div></div>
         </div>
       </div>
     </div>
-    <div class="app-desc">The simplest way for freelancers to track income, send professional invoices, and stay on top of finances — built for solo creators who move fast.</div>
-    <div class="app-foot">
-      <div class="tag-row">
-        <span class="tg">SwiftUI</span>
-        <span class="tg">iOS</span>
-        <span class="tg">Finance</span>
+  </section>
+
+  <section class="apps" id="apps">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Apps on the App Store</h2>
+        <div class="section-tag">Live &amp; shipped</div>
       </div>
-      <a class="dl-btn" href="https://apps.apple.com/us/app/freelance-income-invoices/id6759544915" target="_blank">
-        <svg width="16" height="20" viewBox="0 0 20 24" fill="white"><path d="M16.52 12.62c-.03-3.24 2.65-4.8 2.77-4.87-1.51-2.21-3.86-2.51-4.7-2.54-2-.2-3.9 1.18-4.92 1.18-1.01 0-2.57-1.15-4.23-1.12C3.1 5.31 1.1 6.5.06 8.4c-2.1 3.64-.54 9.02 1.5 11.98 1.01 1.45 2.2 3.07 3.77 3.01 1.52-.06 2.1-.98 3.93-.98 1.84 0 2.37.98 3.98.95 1.63-.03 2.66-1.47 3.66-2.93 1.15-1.67 1.62-3.3 1.65-3.38-.04-.02-3.02-1.16-3.05-4.43zm-2.85-8.14c.84-1.02 1.4-2.43 1.25-3.84-1.2.05-2.67.8-3.53 1.8-.77.89-1.46 2.32-1.28 3.69 1.34.1 2.71-.68 3.56-1.65z"/></svg>
-        <div><span class="dl-sub">Download on the</span><span class="dl-main">App Store</span></div>
-      </a>
-    </div>
-  </div>
-</section>
+      <div class="apps-grid stagger">
 
-<!-- CTA -->
-<div class="cta-wrap reveal">
-  <div class="cta-card">
-    <div class="cta-orb"></div>
-    <h2>Let's build something great</h2>
-    <p>Have an idea for an iOS app? Looking for a developer who cares about craft as much as code? Let's talk.</p>
-    <div class="cta-btns">
-      <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn-p">Send a message →</a>
-      <a href="mailto:OussamaElmejdoubi@protonmail.com" class="btn-s" style="font-size:13px">OussamaElmejdoubi@protonmail.com</a>
-    </div>
-  </div>
-</div>
+        <a class="app-card reveal" style="--i:0; --card-accent:var(--gold);" href="https://apps.apple.com/us/app/christian-verse-of-the-day/id6767923807" target="_blank" rel="noopener">
+          <div class="app-icon">✝️</div>
+          <h3>Christian Verse of the Day</h3>
+          <p class="app-desc">A Bible widget and lock-screen companion that surfaces God's word, one verse at a time.</p>
+          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
 
-<!-- FOOTER -->
-<footer class="foot" id="contact">
-  <a href="mailto:OussamaElmejdoubi@protonmail.com" class="email-row">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>
-    OussamaElmejdoubi@protonmail.com
-  </a>
-  <br>
-  <span class="foot-copy">© 2026 Oussama El Mejdoubi · Built with care in Morocco</span>
+        <a class="app-card reveal" style="--i:1; --card-accent:var(--coral);" href="https://apps.apple.com/us/app/christian-wallpapers-jesus-hd/id6761922813" target="_blank" rel="noopener">
+          <div class="app-icon">🖼️</div>
+          <h3>Christian Wallpapers: Jesus HD</h3>
+          <p class="app-desc">High-resolution faith-inspired wallpapers built for the lock screen and home screen.</p>
+          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+
+        <a class="app-card reveal" style="--i:2; --card-accent:var(--teal);" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank" rel="noopener">
+          <div class="app-icon">🌙</div>
+          <h3>Muslim Wallpaper &amp; Calligraphy</h3>
+          <p class="app-desc">Islamic lock-screen backgrounds and calligraphy, designed with real geometric patterns in mind.</p>
+          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+
+        <a class="app-card reveal" style="--i:3; --card-accent:#8FB8FF;" href="https://apps.apple.com/us/app/invoice-maker-time-tracker/id6759544915" target="_blank" rel="noopener">
+          <div class="app-icon">🧾</div>
+          <h3>Invoice Maker &amp; Time Tracker</h3>
+          <p class="app-desc">Freelance billing and timesheets, built to make invoicing take minutes, not hours.</p>
+          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>Toolkit</h2>
+        <div class="section-tag">What I build with</div>
+      </div>
+      <div class="skill-row reveal stagger">
+        <span class="skill-pill" style="--i:0;"><b>Swift</b></span>
+        <span class="skill-pill" style="--i:1;"><b>SwiftUI</b></span>
+        <span class="skill-pill" style="--i:2;">UIKit</span>
+        <span class="skill-pill" style="--i:3;">WidgetKit</span>
+        <span class="skill-pill" style="--i:4;">Core Data</span>
+        <span class="skill-pill" style="--i:5;">Xcode</span>
+        <span class="skill-pill" style="--i:6;">App Store Connect</span>
+        <span class="skill-pill" style="--i:7;">Human Interface Guidelines</span>
+        <span class="skill-pill" style="--i:8;">ASO &amp; App Store growth</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap reveal">
+      <div class="section-tag">Get in touch</div>
+      <h2>Have an app idea, or want to work together?</h2>
+      <p>I'm always open to freelance projects, collaborations, or just talking Swift.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:OussamaElmejdoubi@protonmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://apps.apple.com/us/developer/oussama-el-mejdoubi/id1878013560" target="_blank" rel="noopener">App Store profile</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+    <span>© <span id="year"></span> Oussama El Mejdoubi. Made in Morocco 🇲🇦</span>
+    <a href="mailto:OussamaElmejdoubi@protonmail.com">OussamaElmejdoubi@protonmail.com</a>
+  </div>
 </footer>
 
 <script>
-const reveals = document.querySelectorAll('.reveal');
-const bars = document.querySelectorAll('.sk-fill');
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('vis');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- scroll reveal ---------- */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReducedMotion) {
+    revealEls.forEach(el => el.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
+
+  /* ---------- nav shrink on scroll ---------- */
+  const header = document.querySelector('header.site');
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- cursor glow in hero ---------- */
+  const heroSection = document.getElementById('hero-section');
+  const glow = document.getElementById('hero-glow');
+  if (heroSection && glow && !prefersReducedMotion && window.matchMedia('(pointer:fine)').matches) {
+    heroSection.addEventListener('mouseenter', () => glow.classList.add('active'));
+    heroSection.addEventListener('mouseleave', () => glow.classList.remove('active'));
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      glow.style.setProperty('--gx', `${e.clientX - rect.left}px`);
+      glow.style.setProperty('--gy', `${e.clientY - rect.top}px`);
+    });
+  }
+
+  /* ---------- signature lock-screen widget: cycles through the real shipped apps ---------- */
+  const apps = [
+    { wallpaper: 'linear-gradient(160deg,#2A1F3D,#12182B)', label: 'Verse of the Day', title: 'Christian Verse of the Day', text: "A new verse, every morning, right on your lock screen." },
+    { wallpaper: 'linear-gradient(160deg,#3A1F22,#12182B)', label: 'Faith Wallpapers', title: 'Christian Wallpapers: Jesus HD', text: 'HD wallpapers for your lock screen, refreshed daily.' },
+    { wallpaper: 'linear-gradient(160deg,#1F3A36,#12182B)', label: 'Islamic Art', title: 'Muslim Wallpaper & Calligraphy', text: 'Geometric patterns and calligraphy for your home screen.' },
+    { wallpaper: 'linear-gradient(160deg,#1F2A3D,#12182B)', label: 'Freelance Tools', title: 'Invoice Maker & Time Tracker', text: 'Track your hours, send an invoice, get paid.' }
+  ];
+
+  const screen = document.getElementById('screen');
+  const widget = document.getElementById('widget');
+  const wLabel = document.getElementById('w-label');
+  const wTitle = document.getElementById('w-title');
+  const wText = document.getElementById('w-text');
+  const dockIcons = document.querySelectorAll('#dock .icon');
+
+  let current = 0;
+
+  function applyApp(index){
+    const app = apps[index];
+    screen.style.setProperty('--wallpaper', app.wallpaper);
+    wLabel.textContent = app.label;
+    wTitle.textContent = app.title;
+    wText.textContent = app.text;
+    dockIcons.forEach(icon => {
+      icon.classList.toggle('pulse', Number(icon.dataset.app) === index);
+    });
+  }
+
+  function goToApp(index){
+    if (prefersReducedMotion) { applyApp(index); return; }
+    widget.classList.add('swapping');
+    setTimeout(() => {
+      applyApp(index);
+      widget.classList.remove('swapping');
+    }, 260);
+  }
+
+  applyApp(0);
+
+  if (!prefersReducedMotion) {
+    setInterval(() => {
+      current = (current + 1) % apps.length;
+      goToApp(current);
+    }, 3800);
+  }
+
+  dockIcons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      current = Number(icon.dataset.app);
+      goToApp(current);
+    });
   });
-}, { threshold: 0.1 });
 
-const barObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const w = e.target.getAttribute('data-width');
-      e.target.style.width = w;
-      e.target.classList.add('ani');
-      barObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-
-reveals.forEach(el => revealObs.observe(el));
-bars.forEach(el => barObs.observe(el));
+  /* ---------- live clock in the mock lock screen ---------- */
+  function updateClock(){
+    const el = document.querySelector('.screen .hh');
+    const dateEl = document.getElementById('wallpaper-date');
+    if(!el) return;
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes().toString().padStart(2,'0');
+    el.textContent = `${h.toString().padStart(2,'0')}:${m}`;
+    dateEl.textContent = now.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' });
+  }
+  updateClock();
+  setInterval(updateClock, 15000);
 </script>
+
 </body>
 </html>

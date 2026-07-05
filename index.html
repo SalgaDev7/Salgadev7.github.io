@@ -46,6 +46,10 @@
     from{opacity:0; transform:translateY(22px);}
     to{opacity:1; transform:translateY(0);}
   }
+  @keyframes riseBlur{
+    from{opacity:0; transform:translateY(34px); filter:blur(10px);}
+    to{opacity:1; transform:translateY(0); filter:blur(0);}
+  }
   @keyframes floaty{
     0%, 100%{transform:translateY(0) rotate(-0.3deg);}
     50%{transform:translateY(-10px) rotate(0.3deg);}
@@ -57,6 +61,20 @@
   @keyframes popIn{
     from{opacity:0; transform:scale(0.92);}
     to{opacity:1; transform:scale(1);}
+  }
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1);}
+    33%{transform:translate(30px,-24px) scale(1.08);}
+    66%{transform:translate(-22px,18px) scale(0.96);}
+    100%{transform:translate(0,0) scale(1);}
+  }
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @keyframes spinSlow{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
   }
 
   .reveal{
@@ -72,6 +90,89 @@
 
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none;}
+  }
+
+  /* ---------- grain overlay ---------- */
+  .grain{
+    position:fixed; inset:0; z-index:200;
+    pointer-events:none;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- scroll progress ---------- */
+  .scroll-progress{
+    position:fixed; top:0; left:0; height:3px;
+    width:0%; z-index:210;
+    background:linear-gradient(90deg, var(--coral), var(--gold), var(--teal));
+    transition:width .1s linear;
+  }
+
+  /* ---------- custom cursor ---------- */
+  .cursor-dot, .cursor-ring{
+    position:fixed; top:0; left:0; z-index:220;
+    pointer-events:none;
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    will-change:transform;
+  }
+  .cursor-dot{
+    width:6px; height:6px;
+    background:var(--coral);
+  }
+  .cursor-ring{
+    width:34px; height:34px;
+    border:1px solid rgba(246,242,233,0.5);
+    transition:width .25s ease, height .25s ease, border-color .25s ease, background .25s ease;
+  }
+  .cursor-ring.hovering{
+    width:56px; height:56px;
+    border-color:var(--teal);
+    background:rgba(63,167,150,0.1);
+  }
+  body.has-custom-cursor, body.has-custom-cursor a, body.has-custom-cursor button{cursor:none;}
+
+  /* ---------- ambient drifting blobs ---------- */
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    pointer-events:none;
+    opacity:0.35;
+    animation:drift 16s ease-in-out infinite;
+    z-index:0;
+  }
+
+  /* ---------- marquee ticker ---------- */
+  .marquee-band{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    padding:16px 0;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+  .marquee-track{
+    display:flex; width:max-content;
+    animation:marquee 22s linear infinite;
+  }
+  .marquee-track span{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:0.02em;
+    color:var(--muted);
+    padding:0 28px;
+    display:flex; align-items:center; gap:14px;
+    white-space:nowrap;
+  }
+  .marquee-track span::after{
+    content:"✦";
+    color:var(--coral);
+    font-size:0.7rem;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{animation:none;}
   }
 
   .wrap{
@@ -148,23 +249,27 @@
 
   /* ---------- hero ---------- */
   .hero{
-    padding:88px 0 96px;
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap:56px;
-    align-items:center;
+    padding:120px 0 110px;
     position:relative;
     overflow:hidden;
+    text-align:center;
+  }
+  .hero > .wrap{max-width:760px;}
+  #hero-canvas{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    z-index:0;
+    opacity:0.55;
   }
   .hero-glow{
     position:absolute;
-    width:520px; height:520px;
-    left:var(--gx, 20%); top:var(--gy, 20%);
+    width:620px; height:620px;
+    left:var(--gx, 50%); top:var(--gy, 30%);
     transform:translate(-50%,-50%);
-    background:radial-gradient(circle, rgba(255,107,77,0.16), rgba(63,167,150,0.08) 45%, transparent 70%);
+    background:radial-gradient(circle, rgba(255,107,77,0.18), rgba(63,167,150,0.09) 45%, transparent 70%);
     pointer-events:none;
-    opacity:0;
-    transition:opacity .6s ease;
+    opacity:0.7;
+    transition:opacity .6s ease, left .3s ease, top .3s ease;
     z-index:0;
   }
   .hero-glow.active{opacity:1;}
@@ -174,17 +279,16 @@
     animation:rise .85s cubic-bezier(.16,.8,.24,1) both;
   }
   .hero-copy > .eyebrow{animation-delay:.05s;}
-  .hero-copy > h1{animation-delay:.16s;}
-  .hero-copy > .lede{animation-delay:.32s;}
-  .hero-copy > .hero-actions{animation-delay:.46s;}
-  .hero-copy > .hero-meta{animation-delay:.6s;}
+  .hero-copy > .lede{animation-delay:.75s;}
+  .hero-copy > .hero-actions{animation-delay:.92s;}
+  .hero-copy > .hero-meta{animation-delay:1.08s;}
   .eyebrow{
     font-family:var(--mono);
     font-size:0.8rem;
     letter-spacing:0.14em;
     text-transform:uppercase;
     color:var(--teal);
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center; justify-content:center; gap:10px;
     margin-bottom:22px;
   }
   .eyebrow::before{
@@ -196,20 +300,27 @@
   }
   h1{
     font-family:var(--display);
-    font-size:clamp(2.4rem, 4.6vw, 3.7rem);
-    line-height:1.05;
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:1.04;
     margin:0 0 22px;
-    letter-spacing:-0.01em;
+    letter-spacing:-0.02em;
+    overflow:hidden;
+  }
+  h1 .word{
+    display:inline-block;
+    opacity:0;
+    animation:riseBlur .9s cubic-bezier(.16,.8,.24,1) both;
   }
   h1 .accent{color:var(--coral);}
   .lede{
     font-size:1.08rem;
     color:var(--muted);
     max-width:46ch;
-    margin:0 0 34px;
+    margin:0 auto 34px;
   }
   .hero-actions{
     display:flex; gap:14px; flex-wrap:wrap;
+    justify-content:center;
     margin-bottom:38px;
   }
   .btn{
@@ -233,123 +344,12 @@
 
   .hero-meta{
     display:flex; gap:26px; flex-wrap:wrap;
+    justify-content:center;
     font-family:var(--mono);
     font-size:0.82rem;
     color:var(--muted);
   }
   .hero-meta span b{color:var(--paper); font-weight:500;}
-
-  /* ---------- lock screen mockup (signature element) ---------- */
-  .phone-stage{
-    display:flex; justify-content:center;
-    perspective:1200px;
-  }
-  .phone{
-    width:272px;
-    height:560px;
-    border-radius:44px;
-    padding:12px;
-    background:linear-gradient(180deg,#232c46,#141b30);
-    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
-    position:relative;
-    opacity:0;
-    transform:translateY(40px) rotate(-6deg) scale(.94);
-    animation:phoneIn 1s cubic-bezier(.16,.8,.24,1) .3s both,
-              floaty 6.5s ease-in-out 1.3s infinite;
-  }
-  @keyframes phoneIn{
-    to{opacity:1; transform:translateY(0) rotate(0deg) scale(1);}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .phone{animation:none; opacity:1;}
-  }
-  .phone::before{
-    content:"";
-    position:absolute; top:22px; left:50%; transform:translateX(-50%);
-    width:90px; height:24px; border-radius:14px; background:#0b0f1c; z-index:5;
-  }
-  .screen{
-    position:relative;
-    width:100%; height:100%;
-    border-radius:34px;
-    overflow:hidden;
-    background:var(--wallpaper, linear-gradient(160deg,#1B2540,#12182B));
-    transition:background 1.2s ease;
-  }
-  .screen .pattern{
-    position:absolute; inset:0;
-    opacity:0.16;
-    background-image:
-      radial-gradient(circle at 20% 20%, transparent 0 14px, var(--gold) 14px 15px, transparent 15px),
-      radial-gradient(circle at 60% 60%, transparent 0 14px, var(--teal) 14px 15px, transparent 15px),
-      radial-gradient(circle at 80% 10%, transparent 0 10px, var(--coral) 10px 11px, transparent 11px);
-    background-size:70px 70px, 90px 90px, 60px 60px;
-  }
-  .screen .time{
-    position:relative; z-index:2;
-    text-align:center;
-    margin-top:64px;
-    font-family:var(--display);
-    font-weight:600;
-  }
-  .screen .time .hh{font-size:3.4rem; letter-spacing:-0.02em;}
-  .screen .time .dd{font-size:0.85rem; color:rgba(246,242,233,0.75); margin-top:4px; font-family:var(--body);}
-  .widget{
-    position:relative; z-index:2;
-    margin:26px 20px 0;
-    background:rgba(20,27,48,0.55);
-    border:1px solid rgba(246,242,233,0.14);
-    backdrop-filter:blur(6px);
-    border-radius:20px;
-    padding:16px 18px;
-    transition:opacity .5s ease;
-  }
-  .widget .wlabel{
-    font-family:var(--mono);
-    font-size:0.68rem;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--gold);
-    display:block;
-    margin-bottom:8px;
-    transition:opacity .35s ease, transform .35s ease;
-  }
-  .widget .wtitle{
-    font-family:var(--display);
-    font-size:0.98rem;
-    font-weight:600;
-    margin-bottom:4px;
-    transition:opacity .35s ease .04s, transform .35s ease .04s;
-  }
-  .widget .wtext{
-    font-size:0.8rem;
-    color:rgba(246,242,233,0.72);
-    transition:opacity .35s ease .08s, transform .35s ease .08s;
-  }
-  .widget.swapping .wlabel,
-  .widget.swapping .wtitle,
-  .widget.swapping .wtext{
-    opacity:0;
-    transform:translateY(6px);
-  }
-  .dock .icon{
-    transition:transform .3s cubic-bezier(.34,1.56,.64,1), background .3s ease;
-    cursor:pointer;
-  }
-  .dock .icon.pulse{
-    transform:scale(1.14);
-    background:rgba(246,242,233,0.2);
-  }
-  .dock{
-    position:absolute; bottom:26px; left:20px; right:20px; z-index:2;
-    display:flex; justify-content:space-between;
-  }
-  .dock .icon{
-    width:44px; height:44px; border-radius:12px;
-    background:rgba(246,242,233,0.1);
-    display:flex; align-items:center; justify-content:center;
-    font-size:1.1rem;
-  }
 
   /* ---------- section shell ---------- */
   section{padding:88px 0;}
@@ -375,7 +375,10 @@
     display:grid;
     grid-template-columns: 0.9fr 1.1fr;
     gap:56px;
+    position:relative;
+    overflow:hidden;
   }
+  .about > .wrap{position:relative; z-index:1;}
   .about p{color:var(--muted); font-size:1.02rem; max-width:60ch;}
   .about p strong{color:var(--paper); font-weight:600;}
   .stat-grid{
@@ -459,7 +462,8 @@
   .app-card:hover .app-link svg{transform:translate(2px,-2px);}
 
   /* ---------- skills ---------- */
-  .skills{border-top:1px solid var(--line);}
+  .skills{border-top:1px solid var(--line); position:relative; overflow:hidden;}
+  .skills > .wrap{position:relative; z-index:1;}
   .skill-row{
     display:flex; flex-wrap:wrap; gap:10px;
   }
@@ -483,7 +487,10 @@
   .contact{
     border-top:1px solid var(--line);
     text-align:center;
+    position:relative;
+    overflow:hidden;
   }
+  .contact > .wrap{position:relative; z-index:1;}
   .contact h2{
     font-family:var(--display);
     font-size:clamp(2rem,4vw,3rem);
@@ -509,9 +516,7 @@
 
   /* ---------- responsive ---------- */
   @media (max-width: 880px){
-    .hero{grid-template-columns:1fr; padding-top:56px;}
-    .phone-stage{order:-1; margin-bottom:12px;}
-    .phone{width:230px; height:474px;}
+    .hero{padding-top:56px;}
     .about{grid-template-columns:1fr;}
     .apps-grid{grid-template-columns:1fr;}
     .nav-links{display:none;}
@@ -521,17 +526,21 @@
 </head>
 <body>
 
+<div class="grain"></div>
+<div class="scroll-progress" id="scroll-progress"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
 <header class="site">
   <div class="wrap">
     <nav>
       <div class="logo"><span class="dot"></span> Oussama El Mejdoubi</div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#apps">Apps</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a class="nav-cta" href="mailto:OussamaElmejdoubi@protonmail.com">Say hello</a>
+      <a class="nav-cta magnetic" href="mailto:OussamaElmejdoubi@protonmail.com">Say hello</a>
     </nav>
   </div>
 </header>
@@ -539,15 +548,16 @@
 
 <main>
   <section class="hero" id="hero-section">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-glow" id="hero-glow"></div>
-    <div class="wrap" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;">
+    <div class="wrap">
       <div class="hero-copy">
         <div class="eyebrow">Indie iOS Developer · Morocco</div>
-        <h1>Building small apps<br> people open <span class="accent">every day.</span></h1>
+        <h1 id="hero-heading"><span class="word" style="animation-delay:.16s">Building</span> <span class="word" style="animation-delay:.24s">small</span> <span class="word" style="animation-delay:.32s">apps</span> <span class="word" style="animation-delay:.4s">people</span> <span class="word" style="animation-delay:.48s">open</span> <span class="word accent" style="animation-delay:.58s">every</span> <span class="word accent" style="animation-delay:.66s">day.</span></h1>
         <p class="lede">I'm Oussama, a 20-year-old indie developer from Morocco. I design and ship iOS apps end to end — Swift, SwiftUI, and a lot of attention to the little details on the lock screen.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://apps.apple.com/us/developer/oussama-el-mejdoubi/id1878013560" target="_blank" rel="noopener">View on the App Store</a>
-          <a class="btn btn-ghost" href="mailto:OussamaElmejdoubi@protonmail.com">OussamaElmejdoubi@protonmail.com</a>
+          <a class="btn btn-primary magnetic" href="https://apps.apple.com/us/developer/oussama-el-mejdoubi/id1878013560" target="_blank" rel="noopener">View on the App Store</a>
+          <a class="btn btn-ghost magnetic" href="mailto:OussamaElmejdoubi@protonmail.com">OussamaElmejdoubi@protonmail.com</a>
         </div>
         <div class="hero-meta">
           <span><b>5+</b> apps shipped</span>
@@ -555,33 +565,18 @@
           <span><b>Rabat</b>, Morocco</span>
         </div>
       </div>
-
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen" id="screen">
-            <div class="pattern"></div>
-            <div class="time">
-              <div class="hh">9:41</div>
-              <div class="dd" id="wallpaper-date">Sunday, July 5</div>
-            </div>
-            <div class="widget" id="widget">
-              <span class="wlabel" id="w-label">Verse of the Day</span>
-              <div class="wtitle" id="w-title">Christian Verse of the Day</div>
-              <div class="wtext" id="w-text">A new verse, every morning, right on your lock screen.</div>
-            </div>
-            <div class="dock" id="dock">
-              <div class="icon" data-app="0">✝️</div>
-              <div class="icon" data-app="2">🌙</div>
-              <div class="icon" data-app="3">🧾</div>
-              <div class="icon" data-app="1">🖼️</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span>Swift</span><span>SwiftUI</span><span>iOS Development</span><span>Morocco</span><span>Indie Dev</span><span>Shipped on the App Store</span>
+      <span>Swift</span><span>SwiftUI</span><span>iOS Development</span><span>Morocco</span><span>Indie Dev</span><span>Shipped on the App Store</span>
+    </div>
+  </div>
+
   <section class="about" id="about">
+    <div class="blob" style="width:380px; height:380px; background:var(--teal); top:-100px; right:-80px; animation-delay:-4s;"></div>
     <div class="wrap" style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px;">
       <div class="reveal">
         <div class="section-tag">01 / About</div>
@@ -599,47 +594,8 @@
     </div>
   </section>
 
-  <section class="apps" id="apps">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <h2>Apps on the App Store</h2>
-        <div class="section-tag">Live &amp; shipped</div>
-      </div>
-      <div class="apps-grid stagger">
-
-        <a class="app-card reveal" style="--i:0; --card-accent:var(--gold);" href="https://apps.apple.com/us/app/christian-verse-of-the-day/id6767923807" target="_blank" rel="noopener">
-          <div class="app-icon">✝️</div>
-          <h3>Christian Verse of the Day</h3>
-          <p class="app-desc">A Bible widget and lock-screen companion that surfaces God's word, one verse at a time.</p>
-          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-
-        <a class="app-card reveal" style="--i:1; --card-accent:var(--coral);" href="https://apps.apple.com/us/app/christian-wallpapers-jesus-hd/id6761922813" target="_blank" rel="noopener">
-          <div class="app-icon">🖼️</div>
-          <h3>Christian Wallpapers: Jesus HD</h3>
-          <p class="app-desc">High-resolution faith-inspired wallpapers built for the lock screen and home screen.</p>
-          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-
-        <a class="app-card reveal" style="--i:2; --card-accent:var(--teal);" href="https://apps.apple.com/us/app/muslim-wallpaper-calligraphy/id6760541034" target="_blank" rel="noopener">
-          <div class="app-icon">🌙</div>
-          <h3>Muslim Wallpaper &amp; Calligraphy</h3>
-          <p class="app-desc">Islamic lock-screen backgrounds and calligraphy, designed with real geometric patterns in mind.</p>
-          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-
-        <a class="app-card reveal" style="--i:3; --card-accent:#8FB8FF;" href="https://apps.apple.com/us/app/invoice-maker-time-tracker/id6759544915" target="_blank" rel="noopener">
-          <div class="app-icon">🧾</div>
-          <h3>Invoice Maker &amp; Time Tracker</h3>
-          <p class="app-desc">Freelance billing and timesheets, built to make invoicing take minutes, not hours.</p>
-          <span class="app-link">View on the App Store <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
   <section class="skills" id="skills">
+    <div class="blob" style="width:340px; height:340px; background:var(--gold); bottom:-120px; left:-60px; animation-delay:-9s;"></div>
     <div class="wrap">
       <div class="section-head reveal">
         <h2>Toolkit</h2>
@@ -660,6 +616,7 @@
   </section>
 
   <section class="contact" id="contact">
+    <div class="blob" style="width:420px; height:420px; background:var(--coral); top:-140px; left:50%; margin-left:-210px; animation-delay:-2s;"></div>
     <div class="wrap reveal">
       <div class="section-tag">Get in touch</div>
       <h2>Have an app idea, or want to work together?</h2>
@@ -711,7 +668,8 @@
   /* ---------- cursor glow in hero ---------- */
   const heroSection = document.getElementById('hero-section');
   const glow = document.getElementById('hero-glow');
-  if (heroSection && glow && !prefersReducedMotion && window.matchMedia('(pointer:fine)').matches) {
+  const finePointer = window.matchMedia('(pointer:fine)').matches;
+  if (heroSection && glow && !prefersReducedMotion && finePointer) {
     heroSection.addEventListener('mouseenter', () => glow.classList.add('active'));
     heroSection.addEventListener('mouseleave', () => glow.classList.remove('active'));
     heroSection.addEventListener('mousemove', (e) => {
@@ -721,72 +679,181 @@
     });
   }
 
-  /* ---------- signature lock-screen widget: cycles through the real shipped apps ---------- */
-  const apps = [
-    { wallpaper: 'linear-gradient(160deg,#2A1F3D,#12182B)', label: 'Verse of the Day', title: 'Christian Verse of the Day', text: "A new verse, every morning, right on your lock screen." },
-    { wallpaper: 'linear-gradient(160deg,#3A1F22,#12182B)', label: 'Faith Wallpapers', title: 'Christian Wallpapers: Jesus HD', text: 'HD wallpapers for your lock screen, refreshed daily.' },
-    { wallpaper: 'linear-gradient(160deg,#1F3A36,#12182B)', label: 'Islamic Art', title: 'Muslim Wallpaper & Calligraphy', text: 'Geometric patterns and calligraphy for your home screen.' },
-    { wallpaper: 'linear-gradient(160deg,#1F2A3D,#12182B)', label: 'Freelance Tools', title: 'Invoice Maker & Time Tracker', text: 'Track your hours, send an invoice, get paid.' }
-  ];
+  /* ---------- scroll progress bar ---------- */
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    progressBar.style.width = max > 0 ? `${(scrolled / max) * 100}%` : '0%';
+  }
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
 
-  const screen = document.getElementById('screen');
-  const widget = document.getElementById('widget');
-  const wLabel = document.getElementById('w-label');
-  const wTitle = document.getElementById('w-title');
-  const wText = document.getElementById('w-text');
-  const dockIcons = document.querySelectorAll('#dock .icon');
+  /* ---------- custom magnetic cursor ---------- */
+  const cursorDot = document.getElementById('cursor-dot');
+  const cursorRing = document.getElementById('cursor-ring');
+  if (finePointer && !prefersReducedMotion) {
+    document.body.classList.add('has-custom-cursor');
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+    let rx = mx, ry = my;
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX; my = e.clientY;
+      cursorDot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    });
+    (function ringLoop(){
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      cursorRing.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+      requestAnimationFrame(ringLoop);
+    })();
+    document.querySelectorAll('a, button, .skill-pill').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+    });
+  } else {
+    cursorDot.style.display = 'none';
+    cursorRing.style.display = 'none';
+  }
 
-  let current = 0;
-
-  function applyApp(index){
-    const app = apps[index];
-    screen.style.setProperty('--wallpaper', app.wallpaper);
-    wLabel.textContent = app.label;
-    wTitle.textContent = app.title;
-    wText.textContent = app.text;
-    dockIcons.forEach(icon => {
-      icon.classList.toggle('pulse', Number(icon.dataset.app) === index);
+  /* ---------- magnetic buttons ---------- */
+  if (finePointer && !prefersReducedMotion) {
+    document.querySelectorAll('.magnetic').forEach(el => {
+      el.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const relX = e.clientX - rect.left - rect.width / 2;
+        const relY = e.clientY - rect.top - rect.height / 2;
+        el.style.transition = 'transform .12s ease-out';
+        el.style.transform = `translate(${relX * 0.25}px, ${relY * 0.35}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+        el.style.transform = 'translate(0,0)';
+      });
     });
   }
 
-  function goToApp(index){
-    if (prefersReducedMotion) { applyApp(index); return; }
-    widget.classList.add('swapping');
-    setTimeout(() => {
-      applyApp(index);
-      widget.classList.remove('swapping');
-    }, 260);
-  }
-
-  applyApp(0);
-
-  if (!prefersReducedMotion) {
-    setInterval(() => {
-      current = (current + 1) % apps.length;
-      goToApp(current);
-    }, 3800);
-  }
-
-  dockIcons.forEach(icon => {
-    icon.addEventListener('click', () => {
-      current = Number(icon.dataset.app);
-      goToApp(current);
-    });
+  /* ---------- count-up stat numbers ---------- */
+  document.querySelectorAll('.stat .num').forEach(el => {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^(\d+)(\D*)$/);
+    if (!match) return; // skip emoji / non-numeric stats
+    const target = parseInt(match[1], 10);
+    const suffix = match[2];
+    el.dataset.target = target;
+    el.dataset.suffix = suffix;
+    el.textContent = prefersReducedMotion ? raw : `0${suffix}`;
   });
-
-  /* ---------- live clock in the mock lock screen ---------- */
-  function updateClock(){
-    const el = document.querySelector('.screen .hh');
-    const dateEl = document.getElementById('wallpaper-date');
-    if(!el) return;
-    const now = new Date();
-    const h = now.getHours();
-    const m = now.getMinutes().toString().padStart(2,'0');
-    el.textContent = `${h.toString().padStart(2,'0')}:${m}`;
-    dateEl.textContent = now.toLocaleDateString(undefined, { weekday:'long', month:'long', day:'numeric' });
+  if (!prefersReducedMotion) {
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        if (!target) return;
+        const duration = 900;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = `${Math.round(eased * target)}${suffix}`;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        statObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('.stat .num[data-target]').forEach(el => statObserver.observe(el));
   }
-  updateClock();
-  setInterval(updateClock, 15000);
+
+  /* ---------- generative zellige star canvas (hero signature) ---------- */
+  (function heroCanvas(){
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const colors = ['#FF6B4D', '#3FA796', '#E8B559'];
+    let stars = [];
+    let w, h, dpr;
+
+    function buildStars(){
+      const spacing = 118;
+      stars = [];
+      const cols = Math.ceil(w / spacing) + 2;
+      const rows = Math.ceil(h / spacing) + 2;
+      let n = 0;
+      for (let r = 0; r < rows; r++){
+        for (let c = 0; c < cols; c++){
+          const x = c * spacing - spacing / 2 + (r % 2 ? spacing / 2 : 0);
+          const y = r * spacing - spacing / 2;
+          stars.push({
+            x, y,
+            size: spacing * 0.34,
+            rotation: Math.random() * Math.PI,
+            speed: (Math.random() * 0.4 + 0.15) * (Math.random() < 0.5 ? -1 : 1),
+            color: colors[n % colors.length],
+            appear: n * 0.015
+          });
+          n++;
+        }
+      }
+    }
+
+    function resize(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildStars();
+    }
+
+    function drawStar(cx, cy, radius, rotation, color, alpha){
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = alpha;
+      ctx.lineWidth = 1.1;
+      // two overlapping squares approximate an 8-point zellige star
+      for (let s = 0; s < 2; s++){
+        ctx.beginPath();
+        for (let i = 0; i < 4; i++){
+          const angle = (Math.PI / 2) * i + (s * Math.PI / 4);
+          const px = Math.cos(angle) * radius;
+          const py = Math.sin(angle) * radius;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    let t0 = performance.now();
+    function frame(now){
+      const elapsed = (now - t0) / 1000;
+      ctx.clearRect(0, 0, w, h);
+      stars.forEach(s => {
+        const appearProgress = Math.min(Math.max((elapsed - s.appear) / 0.6, 0), 1);
+        if (appearProgress <= 0) return;
+        const rot = s.rotation + elapsed * 0.08 * s.speed;
+        drawStar(s.x, s.y, s.size * (0.7 + 0.3 * appearProgress), rot, s.color, 0.16 * appearProgress);
+      });
+      if (!prefersReducedMotion) requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(frame);
+    if (prefersReducedMotion) {
+      // draw a single static settled frame
+      t0 = performance.now() - 5000;
+      frame(performance.now());
+    }
+  })();
 </script>
 
 </body>

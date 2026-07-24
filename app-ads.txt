@@ -167,3 +167,5 @@ voisetech.com, 1066, RESELLER
 bluexad.ai, 1996418805747683328, RESELLER
 smartclip.net, 13564, RESELLER
 zmaticoo.com, 5135195, RESELLER
+openx.com, 565175463, RESELLER, 6a698e2ec38604c6
+pubmatic.com, 165750, RESELLER, 5d62403b186f2ace

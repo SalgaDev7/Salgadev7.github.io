@@ -1,0 +1,9 @@
+{
+  "adsEnabled": true,
+  "appOpenEnabled": true,
+  "interstitialEnabled": true,
+  "appOpenAdUnit": "ca-app-pub-3940256099942544/9257395921",
+  "interstitialAdUnit": "ca-app-pub-3940256099942544/4411468910",
+  "interstitialCooldown": 180,
+  "configVersion": 1
+}

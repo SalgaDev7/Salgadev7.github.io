@@ -1,9 +1,19 @@
 {
   "adsEnabled": true,
+
   "appOpenEnabled": true,
   "interstitialEnabled": true,
+
   "appOpenAdUnit": "ca-app-pub-3940256099942544/9257395921",
   "interstitialAdUnit": "ca-app-pub-3940256099942544/4411468910",
+
   "interstitialCooldown": 180,
+
+  "requestTimeout": 10,
+  "cacheDurationHours": 24,
+
+  "minimumAppVersion": "1.0.0",
+  "forceUpdate": false,
+
   "configVersion": 1
 }

@@ -553,3 +553,6 @@ triplelift.com, 8614, RESELLER, 6c33edb13117fd86
 adwmg.com, 159512, RESELLER, c9688a22012618e7
 my-cast.tv, 987033, RESELLER, 8c33fe1bd714ffd7
 appnexus.com, 17973, RESELLER, f5ab79cb980f11d1
+indexexchange.com,219174,RESELLER,50b1c356f2c5c8fc
+pubmatic.com,168363,RESELLER,5d62403b186f2ace
+pubmatic.com,168367,RESELLER,5d62403b186f2ace
